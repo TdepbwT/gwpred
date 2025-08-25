@@ -42,7 +42,7 @@ interface TeamRatingsResponse {
   last_updated: string
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://gwpred-production.up.railway.app'
 
 function App() {
   const [predictions, setPredictions] = useState<GameweekPredictions | null>(null)
@@ -69,6 +69,16 @@ function App() {
       
       console.log('Predictions response:', predictionsRes.data) // Debug log
       console.log('Ratings response:', ratingsRes.data) // Debug log
+      
+      // Additional debugging
+      if (predictionsRes.data) {
+        console.log('Predictions structure:', {
+          hasGameweek: 'gameweek' in predictionsRes.data,
+          hasPredictions: 'predictions' in predictionsRes.data,
+          predictionsArray: Array.isArray(predictionsRes.data.predictions),
+          predictionsLength: predictionsRes.data.predictions?.length || 0
+        })
+      }
       
       setPredictions(predictionsRes.data)
       setRatings(ratingsRes.data)
