@@ -1,29 +1,47 @@
 # Premier League Prediction Model
 
-A simple yet effective model for predicting Premier League match outcomes using team ratings and probability distributions. Now supports multiple gameweeks with dynamic rating updates.
+A simple yet effective model for predicting Premier League match outcomes using team ratings and probability distributions. Now available as both a command-line tool and a modern web application.
+
+## 🚀 Quick Start Options
+
+### Option 1: Web Application (Recommended)
+Experience the predictions through a modern React web interface:
+
+```bash
+# Setup (one-time)
+.\setup.ps1
+
+# Start both backend and frontend servers
+.\start.ps1
+```
+
+Then open http://localhost:3000 in your browser.
+
+### Option 2: Command Line
+Run predictions directly in the terminal:
+
+```bash
+python GW1Pred.py  # For Gameweek 1
+python GW2Pred.py  # For Gameweek 2
+```
 
 ## Overview
 
 This project implements a rating-based prediction model for Premier League matches that:
-- Uses team power ratings on a goal-difference scale (updated after each gameweek)
+- Uses pre-season team power ratings on a goal-difference scale
 - Accounts for home advantage
 - Calculates win/draw/loss probabilities
 - Estimates expected goals and most likely scorelines
 - Provides fair betting odds for each outcome
-- Adapts team ratings based on results and transfer activity
-- Outputs predictions in both console and CSV formats
 
 ## Features
 
-- **Dynamic Team Ratings**: Pre-season ratings updated after each gameweek based on results
-- **Transfer Impact**: Rating adjustments for significant transfers (e.g., Ebere Eze to Arsenal)
+- **Team Ratings**: Pre-season power ratings for all 20 Premier League teams
 - **Home Advantage**: Built-in home field advantage adjustment (+0.25 rating units)
 - **Dynamic Draw Probability**: Draw rates that decrease for mismatched teams
 - **Expected Goals**: Poisson-based goal expectation modeling
 - **Most Likely Scores**: Calculates the most probable scoreline for each match
 - **Fair Odds**: Converts probabilities to fair betting odds
-- **Multiple Output Formats**: Console display and CSV export for data analysis
-- **Historical Tracking**: JSON files store fixture data and key events
 
 ## Model Parameters
 
@@ -36,172 +54,188 @@ This project implements a rating-based prediction model for Premier League match
 
 ## Team Ratings (2025/26 Season)
 
-The model uses dynamic ratings that are updated after each gameweek. Current ratings reflect:
-- Pre-season assessments
-- GW1 results and performances
-- Major transfer activity (e.g., Ebere Eze £68m move to Arsenal)
+The model uses the following pre-season ratings:
 
-**Current Top Ratings (Post-GW1):**
-- Liverpool: 1.35 (↑ from 1.25 - impressive 4-2 win vs Bournemouth)
-- Manchester City: 1.30 (↑ from 1.20 - dominant 4-0 win vs Wolves)
-- Arsenal: 1.25 (↑ from 1.00 - 1-0 win vs Man Utd + Eze signing)
+**Top Tier:**
+- Liverpool: 1.25
+- Manchester City: 1.20
+- Arsenal: 1.00
 
-**Mid-Table Adjustments:**
-- Tottenham: 0.70 (↑ from 0.60 - convincing 3-0 win vs Burnley)
-- Sunderland: 0.25 (↑ from -0.10 - shocking 3-0 upset win vs West Ham)
-- Nottingham Forest: 0.00 (↑ from -0.10 - impressive 3-1 win vs Brentford)
+**Upper Mid-Table:**
+- Tottenham: 0.60
+- Aston Villa: 0.50
+- Chelsea: 0.40
+- Newcastle United: 0.35
+- Manchester United: 0.30
 
-**Notable Declines:**
-- West Ham: -0.20 (↓ from 0.10 - poor 0-3 loss to Sunderland)
-- Bournemouth: -0.30 (↓ from -0.20 - leaky 2-4 defeat vs Liverpool)
-- Burnley: -0.45 (↓ from -0.35 - struggled badly in 0-3 loss to Spurs)
+**Mid-Table:**
+- Brighton: 0.10
+- West Ham: 0.10
+- Brentford: 0.10
+- Crystal Palace: 0.05
+- Fulham: 0.00
+
+**Lower Table:**
+- Everton: -0.05
+- Sunderland: -0.10
+- Wolves: -0.10
+- Nottingham Forest: -0.10
+- Leeds United: -0.15
+- Bournemouth: -0.20
+- Burnley: -0.35
 
 ## Project Structure
 
 ```
 gw1pred/
-├── GW1Pred.py                              # Gameweek 1 predictions script
-├── GW2Pred.py                              # Gameweek 2 predictions script  
-├── gw1.json                                # GW1 fixture data and metadata
-├── gw2.json                                # GW2 fixture data and transfer notes
-├── gw2_predictions_2025-26.csv            # GW2 predictions in CSV format
-├── gw2_predictions_enhanced_big6_2025-26.csv # Enhanced predictions (if applicable)
-└── README.md                               # This file
+├── backend/                    # FastAPI web application
+│   ├── main.py                # REST API server
+│   └── requirements.txt       # Python dependencies
+├── frontend/                   # React web interface  
+│   ├── src/                   # React components and pages
+│   ├── package.json           # Node.js dependencies
+│   └── tailwind.config.js     # Styling configuration
+├── GW1Pred.py                 # Command-line GW1 predictions
+├── GW2Pred.py                 # Command-line GW2 predictions
+├── gw1.json                   # GW1 fixture data
+├── gw2.json                   # GW2 fixture data with transfers
+├── setup.ps1                  # Web app setup script
+├── start.ps1                  # Development server launcher
+├── WEB_APP_README.md          # Detailed web app documentation
+└── README.md                  # This file
 ```
+
+## Web Application Features
+
+### Frontend (React + shadcn/ui)
+- **Modern Interface**: Clean, responsive design with Tailwind CSS
+- **Real-time Data**: Live updates from the prediction API
+- **Interactive Tabs**: Switch between match predictions and team ratings
+- **Mobile Friendly**: Optimized for all screen sizes
+- **Accessible**: Built with accessibility best practices
+
+### Backend (FastAPI)
+- **REST API**: Clean endpoints for predictions and ratings
+- **Type Safety**: Full Pydantic validation and documentation
+- **CORS Enabled**: Ready for frontend integration
+- **Auto Documentation**: Interactive API docs at `/docs`
+- **Fast Performance**: Async Python with optimized calculations
 
 ## Requirements
 
+### For Web Application:
+```
+Python 3.8+ (backend)
+Node.js 18+ (frontend)
+npm or yarn (package manager)
+```
+
+### For Command Line Only:
 ```
 pandas
 math (built-in)
 itertools (built-in)
 ```
 
-## Installation
+## Installation & Usage
 
-1. Clone this repository:
-```bash
-git clone <repository-url>
-cd gw1pred
-```
+### Web Application Setup
 
-2. Install required dependencies:
+1. **Quick Setup (Windows):**
+   ```bash
+   # Clone and navigate to the project
+   cd gw1pred
+   
+   # Run the automated setup
+   .\setup.ps1
+   
+   # Start the development servers
+   .\start.ps1
+   ```
+
+   The web app will be available at:
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://localhost:8000
+   - **API Docs**: http://localhost:8000/docs
+
+2. **Manual Setup:**
+   
+   **Backend:**
+   ```bash
+   cd backend
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   python main.py
+   ```
+   
+   **Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+### Command Line Usage
+
+For standalone prediction scripts:
+
 ```bash
+# Install Python dependencies
 pip install pandas
+
+# Run predictions
+python GW1Pred.py  # Gameweek 1 predictions
+python GW2Pred.py  # Gameweek 2 predictions
 ```
 
-## Usage
-
-### For Gameweek 1 Predictions:
-```bash
-python GW1Pred.py
-```
-
-### For Gameweek 2 Predictions:
-```bash
-python GW2Pred.py
-```
-
-Each script will:
-1. Output formatted predictions to the console
-2. Generate corresponding CSV files for data analysis
-3. Show updated team ratings based on latest results and transfers
-
-The scripts automatically handle:
-- Rating adjustments after each gameweek
-- Home advantage calculations
-- Expected goals modeling
-- Most likely scoreline predictions
+Both options provide:
+- Win/Draw/Loss probabilities (%)
+- Fair betting odds
+- Expected goals for each team
+- Most likely scoreline
+- Model rating differences
+- Model rating difference
 
 ## Sample Output
 
-### Console Output (GW2 Example):
 ```
-================================================================================
-PREMIER LEAGUE GAMEWEEK 2 PREDICTIONS (2025/26 Season)
-Updated after GW1 results and recent transfers
-================================================================================
                         Match  Home %  Draw %  Away %  Fair Home Odds  Fair Draw Odds  Fair Away Odds  Exp Goals (Home)  Exp Goals (Away) Most Likely Score  Model diff (H-A)
-           Arsenal vs Brighton     79.4    11.4     9.2            1.26            8.77          10.87               2.42              0.91              2-1              1.35
-    Bournemouth vs Newcastle Utd    45.6    23.1    31.3            2.19            4.33           3.19               1.57              1.24              1-1              0.25
+           Liverpool vs Bournemouth    71.2    17.8    11.0            1.40            5.62           9.09               1.89              0.96              2-1              1.70
+    Aston Villa vs Newcastle United    56.9    24.7    18.4            1.76            4.05           5.43               1.55              1.17              1-1              0.40
+                Brighton vs Fulham    53.2    26.1    20.7            1.88            3.83           4.83               1.49              1.21              1-1              0.25
 ```
-
-### CSV Output:
-All predictions are also saved to CSV files (e.g., `gw2_predictions_2025-26.csv`) containing:
-- Match details
-- Probability percentages for each outcome
-- Fair odds calculations
-- Expected goals for both teams
-- Most likely scoreline
-- Model rating difference
 
 ## Model Methodology
 
-1. **Initial Ratings**: Assign pre-season power ratings to all teams based on expected performance
-2. **Dynamic Updates**: Adjust ratings after each gameweek based on:
-   - Match results and performance levels
-   - Goal difference and expected goal metrics
-   - Significant transfer activity
-3. **Rating Difference**: Calculate effective rating difference including home advantage (+0.25)
-4. **Draw Probability**: Apply exponential decay to reduce draws for mismatched teams
-5. **Win Probabilities**: Use sigmoid function to split remaining probability mass
-6. **Expected Goals**: Apply exponential scaling based on rating difference
-7. **Scoreline Prediction**: Use Poisson distributions to find most likely score
-8. **Output Generation**: Create both console display and CSV files for analysis
-
-## Key Updates (2025/26 Season)
-
-### GW1 Results Impact:
-- **Liverpool** upgraded after impressive 4-2 win vs Bournemouth
-- **Sunderland** dramatically improved following shock 3-0 upset vs West Ham
-- **West Ham** downgraded significantly after poor defensive display
-- **Arsenal** boosted by both match performance and Eze signing
-
-### Transfer Activity:
-- **Ebere Eze** (Crystal Palace → Arsenal, £68m): Major creative addition
-- Rating adjustments reflect both transfer impact and early season form
-
-### Technical Improvements:
-- Enhanced CSV output format for better data analysis
-- JSON metadata files for fixture tracking and transfer notes
-- Improved console formatting with seasonal context
+1. **Rating Difference**: Calculate the effective rating difference including home advantage
+2. **Draw Probability**: Apply exponential decay to reduce draws for mismatched teams
+3. **Win Probabilities**: Use sigmoid function to split remaining probability mass
+4. **Expected Goals**: Apply exponential scaling based on rating difference
+5. **Scoreline Prediction**: Use Poisson distributions to find most likely score
 
 ## Limitations
 
-- Ratings adjustments are subjective and based on limited data samples
-- Model doesn't account for injuries, suspensions, or squad rotation
-- Transfer impact estimations may be speculative
-- Weather, referee, and psychological factors not considered
-- Small sample sizes early in season may lead to overreactions
-- Historical head-to-head records not incorporated
+- Ratings are subjective pre-season estimates
+- Model doesn't account for injuries, transfers, or form
+- Historical data not incorporated beyond rating assignments
+- Fixed parameters may not reflect current season dynamics
 
 ## Future Improvements
 
-- **Advanced Analytics**: Incorporate xG, xA, and defensive metrics
-- **Injury/Suspension Tracking**: Real-time squad availability monitoring
-- **Historical Integration**: Head-to-head records and venue-specific performance
-- **Machine Learning**: Automated rating adjustments using statistical models
-- **Live Updates**: API integration for real-time transfer and team news
-- **Extended Coverage**: Additional leagues and competitions
-- **Performance Validation**: Backtesting against historical seasons
-- **Enhanced Visualization**: Interactive charts and prediction confidence intervals
+- Incorporate transfer market activity
+- Add injury/suspension tracking
+- Include historical head-to-head records
+- Dynamic rating updates based on results
+- Weather and referee impact factors
 
 ## Contributing
 
 Feel free to fork this repository and submit pull requests for improvements. Some areas for contribution:
-- **Enhanced Rating Systems**: More sophisticated team strength calculations
-- **Data Integration**: APIs for live transfer and injury data
-- **Statistical Validation**: Backtesting frameworks and accuracy metrics
-- **Alternative Models**: Elo ratings, machine learning approaches
-- **Visualization Tools**: Interactive dashboards and prediction tracking
-- **Extended Features**: Player-level analysis, formation impact
-
-## Data Sources
-
-- Team ratings: Subjective assessments based on squad quality and market activity
-- Transfer data: Public transfer announcements and reported fees
-- Fixture data: Official Premier League fixture lists
-- Results: Match outcomes and basic statistics
+- More sophisticated rating systems
+- Additional statistical features
+- Model validation against historical data
+- Alternative probability distributions
 
 ## License
 
@@ -209,4 +243,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Disclaimer
 
-This model is for educational and entertainment purposes only. 
+This model is for educational and entertainment purposes only. Please gamble responsibly and within your means if using for betting purposes.
