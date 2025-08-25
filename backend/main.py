@@ -23,7 +23,8 @@ import os
 allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
-    "https://gwpred.vercel.app/"  # Replace with your actual Vercel domain
+    "https://gwpred.vercel.app",
+    "https://gwpred-2z4z.vercel.app"  # Replace with your actual Vercel domain
 ]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
