@@ -5,7 +5,6 @@
   "installCommand": "npm ci",
   "devCommand": "npx vite --port 3000",
   "framework": null,
-  "functions": {},
   "routes": [
     {
       "src": "/assets/(.*)",
