@@ -1,6 +1,29 @@
-# Premier League GW1 Prediction Model
+# Premier League Prediction Model
 
-A simple yet effective model for predicting Premier League Gameweek 1 match outcomes using team ratings and probability distributions.
+A simple yet effective model for predicting Premier League match outcomes using team ratings and probability distributions. Now available as both a command-line tool and a modern web application.
+
+## 🚀 Quick Start Options
+
+### Option 1: Web Application (Recommended)
+Experience the predictions through a modern React web interface:
+
+```bash
+# Setup (one-time)
+.\setup.ps1
+
+# Start both backend and frontend servers
+.\start.ps1
+```
+
+Then open http://localhost:3000 in your browser.
+
+### Option 2: Command Line
+Run predictions directly in the terminal:
+
+```bash
+python GW1Pred.py  # For Gameweek 1
+python GW2Pred.py  # For Gameweek 2
+```
 
 ## Overview
 
@@ -61,40 +84,117 @@ The model uses the following pre-season ratings:
 - Bournemouth: -0.20
 - Burnley: -0.35
 
+## Project Structure
+
+```
+gw1pred/
+├── backend/                    # FastAPI web application
+│   ├── main.py                # REST API server
+│   └── requirements.txt       # Python dependencies
+├── frontend/                   # React web interface  
+│   ├── src/                   # React components and pages
+│   ├── package.json           # Node.js dependencies
+│   └── tailwind.config.js     # Styling configuration
+├── GW1Pred.py                 # Command-line GW1 predictions
+├── GW2Pred.py                 # Command-line GW2 predictions
+├── gw1.json                   # GW1 fixture data
+├── gw2.json                   # GW2 fixture data with transfers
+├── setup.ps1                  # Web app setup script
+├── start.ps1                  # Development server launcher
+├── WEB_APP_README.md          # Detailed web app documentation
+└── README.md                  # This file
+```
+
+## Web Application Features
+
+### Frontend (React + shadcn/ui)
+- **Modern Interface**: Clean, responsive design with Tailwind CSS
+- **Real-time Data**: Live updates from the prediction API
+- **Interactive Tabs**: Switch between match predictions and team ratings
+- **Mobile Friendly**: Optimized for all screen sizes
+- **Accessible**: Built with accessibility best practices
+
+### Backend (FastAPI)
+- **REST API**: Clean endpoints for predictions and ratings
+- **Type Safety**: Full Pydantic validation and documentation
+- **CORS Enabled**: Ready for frontend integration
+- **Auto Documentation**: Interactive API docs at `/docs`
+- **Fast Performance**: Async Python with optimized calculations
+
 ## Requirements
 
+### For Web Application:
+```
+Python 3.8+ (backend)
+Node.js 18+ (frontend)
+npm or yarn (package manager)
+```
+
+### For Command Line Only:
 ```
 pandas
 math (built-in)
 itertools (built-in)
 ```
 
-## Installation
+## Installation & Usage
 
-1. Clone this repository:
-```bash
-git clone <repository-url>
-cd gw1pred
-```
+### Web Application Setup
 
-2. Install required dependencies:
+1. **Quick Setup (Windows):**
+   ```bash
+   # Clone and navigate to the project
+   cd gw1pred
+   
+   # Run the automated setup
+   .\setup.ps1
+   
+   # Start the development servers
+   .\start.ps1
+   ```
+
+   The web app will be available at:
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://localhost:8000
+   - **API Docs**: http://localhost:8000/docs
+
+2. **Manual Setup:**
+   
+   **Backend:**
+   ```bash
+   cd backend
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   python main.py
+   ```
+   
+   **Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+### Command Line Usage
+
+For standalone prediction scripts:
+
 ```bash
+# Install Python dependencies
 pip install pandas
+
+# Run predictions
+python GW1Pred.py  # Gameweek 1 predictions
+python GW2Pred.py  # Gameweek 2 predictions
 ```
 
-## Usage
-
-Simply run the prediction script:
-
-```bash
-python GW1Pred.py
-```
-
-The script will output a formatted table with predictions for all GW1 fixtures including:
+Both options provide:
 - Win/Draw/Loss probabilities (%)
 - Fair betting odds
 - Expected goals for each team
 - Most likely scoreline
+- Model rating differences
 - Model rating difference
 
 ## Sample Output
