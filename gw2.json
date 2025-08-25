@@ -1,0 +1,78 @@
+{
+  "gameweek": 2,
+  "season": "2025-26",
+  "fixtures": [
+    {
+      "date": "2025-08-23",
+      "home": "Arsenal",
+      "away": "Brighton & Hove Albion",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-24",
+      "home": "Bournemouth",
+      "away": "Newcastle United",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-24",
+      "home": "Burnley",
+      "away": "Liverpool",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-24",
+      "home": "Crystal Palace",
+      "away": "West Ham United",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-24",
+      "home": "Everton",
+      "away": "Tottenham Hotspur",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-24",
+      "home": "Fulham",
+      "away": "Leeds United",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-25",
+      "home": "Manchester United",
+      "away": "Nottingham Forest",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-25",
+      "home": "Sunderland",
+      "away": "Aston Villa",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-25",
+      "home": "Wolverhampton Wanderers",
+      "away": "Chelsea",
+      "status": "scheduled"
+    },
+    {
+      "date": "2025-08-25",
+      "home": "Brentford",
+      "away": "Manchester City",
+      "status": "scheduled"
+    }
+  ],
+  "notes": {
+    "key_transfers": [
+      {
+        "player": "Ebere Eze",
+        "from": "Crystal Palace",
+        "to": "Arsenal",
+        "fee": "£68m",
+        "impact": "Strengthens Arsenal's creative midfield significantly"
+      }
+    ],
+    "gw1_impact": "Ratings updated based on GW1 performances - notably Sunderland's shock 3-0 win over West Ham, and strong showings from Liverpool and Manchester City"
+  }
+}
