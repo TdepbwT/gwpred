@@ -19,9 +19,20 @@ app = FastAPI(
 )
 
 # Enable CORS for React frontend
+import os
+allowed_origins = [
+    "http://localhost:3000", 
+    "http://localhost:5173",
+    "https://your-football-predictions.vercel.app"  # Replace with your actual Vercel domain
+]
+# Add environment variable support for production
+cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
+if cors_origins and cors_origins[0]:
+    allowed_origins.extend(cors_origins)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # React dev servers
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -254,4 +265,6 @@ async def get_available_gameweeks():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    host = os.getenv("HOST", "0.0.0.0")
+    uvicorn.run("main:app", host=host, port=port, reload=False)
