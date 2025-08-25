@@ -60,16 +60,32 @@ function App() {
       setLoading(true)
       setError(null)
       
+      console.log('API_BASE_URL:', API_BASE_URL) // Debug log
+      
       const [predictionsRes, ratingsRes] = await Promise.all([
         axios.get(`${API_BASE_URL}/predictions/2`),
         axios.get(`${API_BASE_URL}/ratings`)
       ])
       
+      console.log('Predictions response:', predictionsRes.data) // Debug log
+      console.log('Ratings response:', ratingsRes.data) // Debug log
+      
       setPredictions(predictionsRes.data)
       setRatings(ratingsRes.data)
     } catch (err) {
-      setError('Failed to fetch data. Make sure the backend server is running.')
-      console.error('Error fetching data:', err)
+      console.error('Full error object:', err) // Enhanced error logging
+      if (axios.isAxiosError(err)) {
+        console.error('Axios error details:', {
+          message: err.message,
+          status: err.response?.status,
+          statusText: err.response?.statusText,
+          data: err.response?.data,
+          url: err.config?.url
+        })
+        setError(`API Error: ${err.response?.status || 'Network'} - ${err.message}`)
+      } else {
+        setError('Failed to fetch data. Please check your internet connection.')
+      }
     } finally {
       setLoading(false)
     }
@@ -183,7 +199,7 @@ function App() {
             </div>
 
             <div className="grid gap-6">
-              {predictions.predictions.map((match, index) => {
+              {predictions.predictions && predictions.predictions.length > 0 ? predictions.predictions.map((match, index) => {
                 const outcomes = [
                   { type: 'Home', percentage: match.home_percentage, odds: match.fair_home_odds },
                   { type: 'Draw', percentage: match.draw_percentage, odds: match.fair_draw_odds },
@@ -232,7 +248,11 @@ function App() {
                     </CardContent>
                   </Card>
                 )
-              })}
+              }) : (
+                <div className="text-center py-8">
+                  <p className="text-gray-500">No predictions available</p>
+                </div>
+              )}
             </div>
           </div>
         )}
