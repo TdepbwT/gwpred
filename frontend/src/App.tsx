@@ -276,7 +276,7 @@ function App() {
             <div className="mb-6">
               <h2 className="text-3xl font-bold text-gray-900">Team Ratings</h2>
               <p className="text-gray-600">
-                Current ratings after GW{ratings.gameweek - 1} • Last updated: {new Date(ratings.last_updated).toLocaleString()}
+                Current ratings after GW{ratings.gameweek} • Last updated: {new Date(ratings.last_updated).toLocaleString()}
               </p>
             </div>
 
