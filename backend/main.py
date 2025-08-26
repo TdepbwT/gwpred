@@ -100,19 +100,76 @@ CURRENT_RATINGS = {
     "Sunderland": 0.30,
 }
 
-# Gameweek fixtures
-GW2_FIXTURES = [
-    ("Arsenal", "Leeds United"),
-    ("Bournemouth", "Wolverhampton Wanderers"),
-    ("Burnley", "Sunderland"),
-    ("Crystal Palace", "Nottingham Forest"),
-    ("Everton", "Brighton & Hove Albion"),
-    ("Fulham", "Manchester United"),
-    ("Newcastle United", "Liverpool"),
-    ("Manchester City", "Tottenham Hotspur"),
-    ("West Ham United", "Chelsea"),
-    ("Brentford", "Aston Villa"),
-]
+def update_ratings_after_gameweek(results: Dict[str, Dict[str, int]]):
+    """
+    Update team ratings based on gameweek results
+    
+    Args:
+        results: Dictionary of match results
+        Format: {
+            "Arsenal vs Leeds United": {"Arsenal": 2, "Leeds United": 1},
+            "Chelsea vs Manchester City": {"Chelsea": 1, "Manchester City": 3}
+        }
+    """
+    global CURRENT_RATINGS
+    
+    for match, score in results.items():
+        teams = list(score.keys())
+        home_team, away_team = teams[0], teams[1]
+        home_goals, away_goals = score[home_team], score[away_team]
+        
+        # Simple rating adjustment based on result vs expectation
+        expected_home, expected_draw, expected_away, _ = calculate_probabilities(home_team, away_team)
+        
+        if home_goals > away_goals:  # Home win
+            actual_result = [1, 0, 0]
+        elif home_goals < away_goals:  # Away win
+            actual_result = [0, 0, 1]
+        else:  # Draw
+            actual_result = [0, 1, 0]
+        
+        expected_result = [expected_home, expected_draw, expected_away]
+        
+        # Calculate surprise factor and adjust ratings
+        surprise_factor = 0.1  # How much ratings can change per game
+        home_adjustment = surprise_factor * (actual_result[0] - expected_result[0])
+        away_adjustment = surprise_factor * (actual_result[2] - expected_result[2])
+        
+        CURRENT_RATINGS[home_team] += home_adjustment
+        CURRENT_RATINGS[away_team] += away_adjustment
+
+# Gameweek fixtures - Add new gameweeks here
+GAMEWEEK_FIXTURES = {
+    2: [
+        ("Arsenal", "Leeds United"),
+        ("Bournemouth", "Wolverhampton Wanderers"),
+        ("Burnley", "Sunderland"),
+        ("Crystal Palace", "Nottingham Forest"),
+        ("Everton", "Brighton & Hove Albion"),
+        ("Fulham", "Manchester United"),
+        ("Newcastle United", "Liverpool"),
+        ("Manchester City", "Tottenham Hotspur"),
+        ("West Ham United", "Chelsea"),
+        ("Brentford", "Aston Villa"),
+    ],
+    3: [
+        ("Liverpool", "Arsenal"),
+        ("Chelsea", "Manchester City"),
+        ("Tottenham Hotspur", "Newcastle United"),
+        ("Manchester United", "Brentford"),
+        ("Aston Villa", "West Ham United"),
+        ("Brighton & Hove Albion", "Crystal Palace"),
+        ("Leeds United", "Bournemouth"),
+        ("Nottingham Forest", "Fulham"),
+        ("Sunderland", "Everton"),
+        ("Wolverhampton Wanderers", "Burnley"),
+    ],
+    # Add future gameweeks here
+}
+
+# Current gameweek
+CURRENT_GAMEWEEK = 3
+SEASON = "2025-26"
 
 # Model parameters
 HOME_ADV = 0.25
@@ -209,8 +266,8 @@ async def get_team_ratings():
     ratings_list.sort(key=lambda x: x.rating, reverse=True)
     
     return TeamRatingsResponse(
-        season="2025-26",
-        gameweek=2,
+        season=SEASON,
+        gameweek=CURRENT_GAMEWEEK - 1,  # Ratings are from previous gameweek
         ratings=ratings_list,
         last_updated=datetime.now().isoformat()
     )
@@ -218,12 +275,17 @@ async def get_team_ratings():
 @app.get("/predictions/{gameweek}", response_model=GameweekPredictions)
 async def get_predictions(gameweek: int):
     """Get predictions for a specific gameweek"""
-    if gameweek != 2:
-        raise HTTPException(status_code=404, detail=f"Predictions for GW{gameweek} not available. Only GW2 is currently supported.")
+    if gameweek not in GAMEWEEK_FIXTURES:
+        available_gws = list(GAMEWEEK_FIXTURES.keys())
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Predictions for GW{gameweek} not available. Available gameweeks: {available_gws}"
+        )
     
     predictions = []
+    fixtures = GAMEWEEK_FIXTURES[gameweek]
     
-    for home, away in GW2_FIXTURES:
+    for home, away in fixtures:
         # Calculate probabilities and expected goals
         p_home, p_draw, p_away, diff = calculate_probabilities(home, away)
         mu_h, mu_a = calculate_expected_goals(diff)
@@ -248,7 +310,7 @@ async def get_predictions(gameweek: int):
     
     return GameweekPredictions(
         gameweek=gameweek,
-        season="2025-26",
+        season=SEASON,
         predictions=predictions,
         last_updated=datetime.now().isoformat(),
         total_matches=len(predictions)
@@ -257,10 +319,11 @@ async def get_predictions(gameweek: int):
 @app.get("/predictions")
 async def get_available_gameweeks():
     """Get list of available gameweeks for predictions"""
+    available_gws = sorted(GAMEWEEK_FIXTURES.keys())
     return {
-        "available_gameweeks": [2],
-        "current_gameweek": 2,
-        "season": "2025-26",
+        "available_gameweeks": available_gws,
+        "current_gameweek": CURRENT_GAMEWEEK,
+        "season": SEASON,
         "total_teams": len(CURRENT_RATINGS)
     }
 
