@@ -62,8 +62,12 @@ function App() {
       
       console.log('API_BASE_URL:', API_BASE_URL) // Debug log
       
+      // First get available gameweeks
+      const availableRes = await axios.get(`${API_BASE_URL}/predictions`)
+      const currentGameweek = availableRes.data.current_gameweek
+      
       const [predictionsRes, ratingsRes] = await Promise.all([
-        axios.get(`${API_BASE_URL}/predictions/2`),
+        axios.get(`${API_BASE_URL}/predictions/${currentGameweek}`),
         axios.get(`${API_BASE_URL}/ratings`)
       ])
       
