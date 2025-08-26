@@ -1,4 +1,4 @@
-# Gameweek 4 Fixtures - Example
+# Gameweek 3 Fixtures
 # Format: Home Team vs Away Team (one per line)
 
 Liverpool vs Arsenal

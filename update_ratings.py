@@ -33,7 +33,7 @@ def main():
         for team, rating in sorted(CURRENT_RATINGS.items(), key=lambda x: x[1], reverse=True):
             print(f"  {team}: {rating:.2f}")
         
-        print("\n✅ Ratings updated successfully!")
+        print("Ratings updated successfully!")
         print("Remember to update the CURRENT_RATINGS in main.py with these new values")
         
     except FileNotFoundError:
