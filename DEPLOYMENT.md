@@ -1,6 +1,6 @@
-# 🚀 Football Prediction App - Deployment Guide
+# Football Prediction App - Deployment Guide
 
-## 🌐 Live Application
+## Live Application
 - **Frontend**: https://gwpred.vercel.app
 - **Backend API**: https://gwpredictor.up.railway.app
 - **API Documentation**: https://gwpredictor.up.railway.app/docs
@@ -60,11 +60,11 @@ Your code is now ready for deployment with the necessary configuration files:
 4. Example: `CORS_ORIGINS` = `https://gwpred.vercel.app`
 5. Railway will automatically redeploy with the new settings
 
-### Your app is now live! 🎉
+### Your app is now live!
 
 Access your application at the Vercel URL and verify it can fetch data from the Railway backend.
 
-## 🔧 Environment Variables Reference
+## Environment Variables Reference
 
 ### Backend Railway Environment
 ```bash
@@ -77,7 +77,7 @@ CORS_ORIGINS=https://gwpred.vercel.app
 VITE_API_URL=https://gwpredictor.up.railway.app
 ```
 
-## 🧪 Testing Your Deployment
+## Testing Deployment
 
 ### Backend API Testing
 ```bash
@@ -101,7 +101,7 @@ curl https://gwpredictor.up.railway.app/ratings
 4. Test tab switching functionality
 5. Check browser console for any errors
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -130,7 +130,7 @@ curl https://gwpredictor.up.railway.app/ratings
 3. **Test API directly**: Use curl or browser to test API endpoints
 4. **Check browser console**: Look for JavaScript errors or network failures
 
-## 💰 Estimated Costs
+## Estimated Costs
 
 ### Free Tier Limits
 - **Vercel**: 
@@ -152,7 +152,7 @@ curl https://gwpredictor.up.railway.app/ratings
 - **Production**: Consider Railway Pro for better performance
 - **High Traffic**: Monitor usage and upgrade as needed
 
-## 🔄 Automatic Deployments
+## Automatic Deployments
 
 Both platforms support automatic deployments:
 
@@ -171,7 +171,7 @@ Both platforms support automatic deployments:
 - Push code changes to trigger automatic deployments
 - Monitor deployment status in platform dashboards
 
-## 🔐 Security Best Practices
+## Security Best Practices
 
 1. **Environment Variables**: Never commit secrets to git
 2. **CORS Configuration**: Only allow necessary origins
@@ -179,7 +179,7 @@ Both platforms support automatic deployments:
 4. **Dependencies**: Keep packages updated for security patches
 5. **API Rate Limiting**: Consider implementing rate limiting for production
 
-## 🌍 Alternative Deployment Options
+## Alternative Deployment Options
 
 ### Backend Alternatives
 - **Heroku**: Easy deployment with git push
@@ -193,7 +193,7 @@ Both platforms support automatic deployments:
 - **Firebase Hosting**: Google's hosting solution
 - **Cloudflare Pages**: Fast global CDN
 
-## 📊 Monitoring and Maintenance
+## Monitoring and Maintenance
 
 ### Health Monitoring
 - Set up uptime monitoring (UptimeRobot, Pingdom)
