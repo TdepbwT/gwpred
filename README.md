@@ -1,19 +1,19 @@
-# ⚽ Premier League Prediction System
+# Premier League Prediction System
 
 A comprehensive football prediction system featuring dynamic team ratings, multiple gameweek support, and a modern web interface. Built with FastAPI (backend) and React (frontend), deployed on Railway and Vercel.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://gwpred.vercel.app)
 [![API](https://img.shields.io/badge/API-Railway-0B0D0E?style=for-the-badge&logo=railway)](https://gwpredictor.up.railway.app)
 
-## 🚀 Quick Start
+## Quick Start
 
-### 🌐 Web Application (Live)
+### Web Application (Live)
 The application is deployed and ready to use:
 - **Frontend**: [https://gwpred.vercel.app](https://gwpred.vercel.app)
 - **API**: [https://gwpredictor.up.railway.app](https://gwpredictor.up.railway.app)
 - **API Documentation**: [https://gwpredictor.up.railway.app/docs](https://gwpredictor.up.railway.app/docs)
 
-### 💻 Local Development
+### Local Development
 ```bash
 # Clone the repository
 git clone https://github.com/TdepbwT/gwpred.git
@@ -26,23 +26,23 @@ cd gwpred
 .\start.ps1
 ```
 
-## ✨ Features
+## Features
 
-### 🎯 Prediction Engine
+### Prediction Engine
 - **Dynamic Team Ratings**: Automatically updated based on match results
 - **Multiple Gameweeks**: Support for entire season with easy gameweek management
 - **Advanced Modeling**: Home advantage, Big 6 bonuses, dynamic draw probabilities
 - **Expected Goals**: Poisson-based goal expectation with most likely scorelines
 - **Fair Odds**: Probability-based betting odds calculation
 
-### 🎨 Modern Web Interface
+### Modern Web Interface
 - **Responsive Design**: Beautiful UI built with React and Tailwind CSS
 - **Real-time Data**: Live predictions from FastAPI backend
 - **Interactive Tabs**: Switch between predictions and team ratings
 - **Mobile Optimized**: Works perfectly on all devices
 - **Accessible**: WCAG compliant with keyboard navigation
 
-### 🔧 Developer Experience
+### Developer Experience
 - **Type Safety**: Full TypeScript frontend, Pydantic backend validation
 - **Auto Documentation**: Interactive API docs with OpenAPI/Swagger
 - **Hot Reload**: Development servers with instant updates
@@ -52,34 +52,34 @@ cd gwpred
 
 ```
 gw1pred/
-├── 🎯 backend/                 # FastAPI REST API
+├──   backend/                 # FastAPI REST API
 │   ├── main.py                # Core prediction engine & API endpoints
 │   ├── requirements.txt       # Python dependencies
 │   ├── Procfile              # Railway deployment config
 │   └── railway.toml          # Railway build settings
-├── 🎨 frontend/               # React web application
+├──   frontend/               # React web application
 │   ├── src/
 │   │   ├── App.tsx           # Main application component
 │   │   └── components/       # Reusable UI components
 │   ├── package.json          # Node.js dependencies
 │   ├── tailwind.config.js    # Styling configuration
 │   └── vercel.json           # Vercel deployment config
-├── 🛠️ Scripts & Tools
+├──   Scripts & Tools
 │   ├── add_gameweek.py       # Helper script for adding new gameweeks
 │   ├── update_ratings.py     # Helper script for updating team ratings
 │   ├── example_fixtures.txt  # Sample fixture format
 │   └── example_results.json  # Sample results format
-├── 📊 Data Files
+├──   Data Files
 │   ├── gw1.json              # Historical gameweek data
 │   ├── gw2.json              # Historical gameweek data
 │   └── *.csv                 # Prediction outputs
-└── 📝 Documentation
+└──   Documentation
     ├── README.md             # This file
     ├── DEPLOYMENT.md         # Deployment guide
     └── WEB_APP_README.md     # Detailed web app docs
 ```
 
-## 🧮 Prediction Model
+##  Prediction Model
 
 ### Core Algorithm
 The system uses an advanced rating-based model that considers:
@@ -111,7 +111,7 @@ BASE_MU = 1.40               # Expected goals base
 BETA = 0.60                  # Goals variance factor
 ```
 
-## 🔄 Adding New Gameweeks
+## Adding New Gameweeks
 
 ### Method 1: Helper Script (Recommended)
 ```bash
@@ -147,7 +147,7 @@ echo '{
 python update_ratings.py gw3_results.json
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Deployment
 The application is deployed using:
@@ -169,7 +169,7 @@ VITE_API_URL=https://gwpredictor.up.railway.app
 ### Manual Deployment
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
-## 🛠️ Development
+## Development
 
 ### Prerequisites
 - **Python 3.11+** (backend)
@@ -199,7 +199,7 @@ npm run dev
 - `GET /predictions/{gameweek}` - Specific gameweek predictions
 - `GET /ratings` - Current team ratings
 
-## 📊 Sample Output
+## Sample Output
 
 ### Match Predictions
 ```
@@ -222,7 +222,7 @@ Rank | Team              | Rating | Change
 5    | Chelsea           | +0.67  | +0.02
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Backend tests
@@ -237,22 +237,16 @@ npm test
 curl https://gwpredictor.up.railway.app/health
 ```
 
-## 🤝 Contributing
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
 
-### Areas for Contribution
-- 🎯 Enhanced prediction algorithms
-- 📊 Additional statistical features
-- 🎨 UI/UX improvements
-- 🧪 Test coverage expansion
-- 📱 Mobile app development
+### Areas for Future Improvement
+- Enhanced prediction algorithms
+- Additional statistical features
+- UI/UX improvements
+- Test coverage expansion
 
-## 📈 Roadmap
+
+## Roadmap
 
 - [ ] **Player-level data integration**
 - [ ] **Injury/suspension tracking**
@@ -263,15 +257,15 @@ curl https://gwpredictor.up.railway.app/health
 - [ ] **Fantasy football integration**
 - [ ] **Multi-league support**
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This application is for educational and entertainment purposes only. The predictions are based on statistical models and should not be considered as professional betting advice. Please gamble responsibly.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **FastAPI** - Modern Python web framework
 - **React** - Frontend library
@@ -286,6 +280,6 @@ This application is for educational and entertainment purposes only. The predict
 
 **[Live Demo](https://gwpred.vercel.app) | [API Docs](https://gwpredictor.up.railway.app/docs) | [Report Bug](https://github.com/TdepbwT/gwpred/issues) | [Request Feature](https://github.com/TdepbwT/gwpred/issues)**
 
-Made with ⚽ by [David Adeoyo](https://github.com/TdepbwT)
+Made by [David Adeoyo](https://github.com/TdepbwT)
 
 </div>
