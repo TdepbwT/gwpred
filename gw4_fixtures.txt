@@ -1,0 +1,13 @@
+# Gameweek 3 Fixtures
+# Format: Home Team vs Away Team (one per line)
+
+Arsenal vs Nottingham Forest
+Bournemouth vs Brighton and Hove Albion
+Crystal Palace vs Sunderland
+Everton vs Aston Villa
+Fulham vs Leeds United
+Newcastle United vs Wolverhampton Wanderers
+West Ham United vs Tottenham Hotspur
+Brentford vs Chelsea
+Burnley vs Liverpool
+Manchester City vs Manchester United

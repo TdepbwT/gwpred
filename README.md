@@ -1,246 +1,291 @@
-# Premier League Prediction Model
+# ⚽ Premier League Prediction System
 
-A simple yet effective model for predicting Premier League match outcomes using team ratings and probability distributions. Now available as both a command-line tool and a modern web application.
+A comprehensive football prediction system featuring dynamic team ratings, multiple gameweek support, and a modern web interface. Built with FastAPI (backend) and React (frontend), deployed on Railway and Vercel.
 
-## 🚀 Quick Start Options
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://gwpred.vercel.app)
+[![API](https://img.shields.io/badge/API-Railway-0B0D0E?style=for-the-badge&logo=railway)](https://gwpredictor.up.railway.app)
 
-### Option 1: Web Application (Recommended)
-Experience the predictions through a modern React web interface:
+## 🚀 Quick Start
 
+### 🌐 Web Application (Live)
+The application is deployed and ready to use:
+- **Frontend**: [https://gwpred.vercel.app](https://gwpred.vercel.app)
+- **API**: [https://gwpredictor.up.railway.app](https://gwpredictor.up.railway.app)
+- **API Documentation**: [https://gwpredictor.up.railway.app/docs](https://gwpredictor.up.railway.app/docs)
+
+### 💻 Local Development
 ```bash
-# Setup (one-time)
+# Clone the repository
+git clone https://github.com/TdepbwT/gwpred.git
+cd gwpred
+
+# Quick setup (Windows)
 .\setup.ps1
 
-# Start both backend and frontend servers
+# Start development servers
 .\start.ps1
 ```
 
-Then open http://localhost:3000 in your browser.
+## ✨ Features
 
-### Option 2: Command Line
-Run predictions directly in the terminal:
+### 🎯 Prediction Engine
+- **Dynamic Team Ratings**: Automatically updated based on match results
+- **Multiple Gameweeks**: Support for entire season with easy gameweek management
+- **Advanced Modeling**: Home advantage, Big 6 bonuses, dynamic draw probabilities
+- **Expected Goals**: Poisson-based goal expectation with most likely scorelines
+- **Fair Odds**: Probability-based betting odds calculation
 
-```bash
-python GW1Pred.py  # For Gameweek 1
-python GW2Pred.py  # For Gameweek 2
-```
+### 🎨 Modern Web Interface
+- **Responsive Design**: Beautiful UI built with React and Tailwind CSS
+- **Real-time Data**: Live predictions from FastAPI backend
+- **Interactive Tabs**: Switch between predictions and team ratings
+- **Mobile Optimized**: Works perfectly on all devices
+- **Accessible**: WCAG compliant with keyboard navigation
 
-## Overview
+### 🔧 Developer Experience
+- **Type Safety**: Full TypeScript frontend, Pydantic backend validation
+- **Auto Documentation**: Interactive API docs with OpenAPI/Swagger
+- **Hot Reload**: Development servers with instant updates
+- **Easy Deployment**: Ready for Vercel (frontend) and Railway (backend)
 
-This project implements a rating-based prediction model for Premier League matches that:
-- Uses pre-season team power ratings on a goal-difference scale
-- Accounts for home advantage
-- Calculates win/draw/loss probabilities
-- Estimates expected goals and most likely scorelines
-- Provides fair betting odds for each outcome
-
-## Features
-
-- **Team Ratings**: Pre-season power ratings for all 20 Premier League teams
-- **Home Advantage**: Built-in home field advantage adjustment (+0.25 rating units)
-- **Dynamic Draw Probability**: Draw rates that decrease for mismatched teams
-- **Expected Goals**: Poisson-based goal expectation modeling
-- **Most Likely Scores**: Calculates the most probable scoreline for each match
-- **Fair Odds**: Converts probabilities to fair betting odds
-
-## Model Parameters
-
-- `HOME_ADV`: 0.25 - Home advantage in rating units
-- `BASE_DRAW`: 0.28 - Baseline draw rate (28%)
-- `DRAW_DECAY`: 0.75 - Rate at which draws decrease for mismatches
-- `SIGMOID_K`: 1.3 - Sharpness of win/loss probability split
-- `BASE_MU`: 1.35 - League-average goals per team per game
-- `BETA`: 0.45 - How much expected goals vary with rating difference
-
-## Team Ratings (2025/26 Season)
-
-The model uses the following pre-season ratings:
-
-**Top Tier:**
-- Liverpool: 1.25
-- Manchester City: 1.20
-- Arsenal: 1.00
-
-**Upper Mid-Table:**
-- Tottenham: 0.60
-- Aston Villa: 0.50
-- Chelsea: 0.40
-- Newcastle United: 0.35
-- Manchester United: 0.30
-
-**Mid-Table:**
-- Brighton: 0.10
-- West Ham: 0.10
-- Brentford: 0.10
-- Crystal Palace: 0.05
-- Fulham: 0.00
-
-**Lower Table:**
-- Everton: -0.05
-- Sunderland: -0.10
-- Wolves: -0.10
-- Nottingham Forest: -0.10
-- Leeds United: -0.15
-- Bournemouth: -0.20
-- Burnley: -0.35
-
-## Project Structure
+## 🏗️ Architecture
 
 ```
 gw1pred/
-├── backend/                    # FastAPI web application
-│   ├── main.py                # REST API server
-│   └── requirements.txt       # Python dependencies
-├── frontend/                   # React web interface  
-│   ├── src/                   # React components and pages
-│   ├── package.json           # Node.js dependencies
-│   └── tailwind.config.js     # Styling configuration
-├── GW1Pred.py                 # Command-line GW1 predictions
-├── GW2Pred.py                 # Command-line GW2 predictions
-├── gw1.json                   # GW1 fixture data
-├── gw2.json                   # GW2 fixture data with transfers
-├── setup.ps1                  # Web app setup script
-├── start.ps1                  # Development server launcher
-├── WEB_APP_README.md          # Detailed web app documentation
-└── README.md                  # This file
+├── 🎯 backend/                 # FastAPI REST API
+│   ├── main.py                # Core prediction engine & API endpoints
+│   ├── requirements.txt       # Python dependencies
+│   ├── Procfile              # Railway deployment config
+│   └── railway.toml          # Railway build settings
+├── 🎨 frontend/               # React web application
+│   ├── src/
+│   │   ├── App.tsx           # Main application component
+│   │   └── components/       # Reusable UI components
+│   ├── package.json          # Node.js dependencies
+│   ├── tailwind.config.js    # Styling configuration
+│   └── vercel.json           # Vercel deployment config
+├── 🛠️ Scripts & Tools
+│   ├── add_gameweek.py       # Helper script for adding new gameweeks
+│   ├── update_ratings.py     # Helper script for updating team ratings
+│   ├── example_fixtures.txt  # Sample fixture format
+│   └── example_results.json  # Sample results format
+├── 📊 Data Files
+│   ├── gw1.json              # Historical gameweek data
+│   ├── gw2.json              # Historical gameweek data
+│   └── *.csv                 # Prediction outputs
+└── 📝 Documentation
+    ├── README.md             # This file
+    ├── DEPLOYMENT.md         # Deployment guide
+    └── WEB_APP_README.md     # Detailed web app docs
 ```
 
-## Web Application Features
+## 🧮 Prediction Model
 
-### Frontend (React + shadcn/ui)
-- **Modern Interface**: Clean, responsive design with Tailwind CSS
-- **Real-time Data**: Live updates from the prediction API
-- **Interactive Tabs**: Switch between match predictions and team ratings
-- **Mobile Friendly**: Optimized for all screen sizes
-- **Accessible**: Built with accessibility best practices
+### Core Algorithm
+The system uses an advanced rating-based model that considers:
 
-### Backend (FastAPI)
-- **REST API**: Clean endpoints for predictions and ratings
-- **Type Safety**: Full Pydantic validation and documentation
-- **CORS Enabled**: Ready for frontend integration
-- **Auto Documentation**: Interactive API docs at `/docs`
-- **Fast Performance**: Async Python with optimized calculations
+- **Team Strength Ratings**: Dynamic values updated after each gameweek
+- **Home Advantage**: +0.25 rating boost for home teams
+- **Big 6 Dominance**: Enhanced performance against smaller teams
+- **Draw Probability Decay**: Fewer draws in mismatched fixtures
+- **Expected Goals**: Poisson distribution modeling
 
-## Requirements
-
-### For Web Application:
-```
-Python 3.8+ (backend)
-Node.js 18+ (frontend)
-npm or yarn (package manager)
+### Current Team Ratings (Post-GW2)
+```python
+"Liverpool": 1.38        # Top rated team
+"Arsenal": 1.26          # Strong title contenders  
+"Manchester City": 1.23  # Defending champions
+"Tottenham Hotspur": 0.83
+"Chelsea": 0.67
+"Aston Villa": 0.36
+# ... (see main.py for complete ratings)
 ```
 
-### For Command Line Only:
+### Model Parameters
+```python
+HOME_ADV = 0.25              # Home advantage
+BASE_DRAW = 0.24             # Base draw probability
+BIG_6_BONUS = 0.15           # Big 6 dominance factor
+SIGMOID_K = 1.5              # Win probability sharpness
+BASE_MU = 1.40               # Expected goals base
+BETA = 0.60                  # Goals variance factor
 ```
-pandas
-math (built-in)
-itertools (built-in)
+
+## 🔄 Adding New Gameweeks
+
+### Method 1: Helper Script (Recommended)
+```bash
+# Create fixtures file
+echo "Liverpool vs Arsenal
+Chelsea vs Manchester City
+Tottenham vs Newcastle" > gw4_fixtures.txt
+
+# Add new gameweek
+python add_gameweek.py 4 gw4_fixtures.txt
 ```
 
-## Installation & Usage
+### Method 2: Manual Update
+Edit `backend/main.py`:
+```python
+GAMEWEEK_FIXTURES = {
+    2: [("Arsenal", "Leeds United"), ...],
+    3: [("Liverpool", "Arsenal"), ...],
+    4: [("Chelsea", "Manchester City"), ...],  # Add new gameweek
+}
+CURRENT_GAMEWEEK = 4  # Update current gameweek
+```
 
-### Web Application Setup
+### Updating Ratings After Results
+```bash
+# Create results file
+echo '{
+  "Liverpool vs Arsenal": {"Liverpool": 2, "Arsenal": 1},
+  "Chelsea vs Manchester City": {"Chelsea": 0, "Manchester City": 3}
+}' > gw3_results.json
 
-1. **Quick Setup (Windows):**
-   ```bash
-   # Clone and navigate to the project
-   cd gw1pred
-   
-   # Run the automated setup
-   .\setup.ps1
-   
-   # Start the development servers
-   .\start.ps1
-   ```
+# Update ratings
+python update_ratings.py gw3_results.json
+```
 
-   The web app will be available at:
-   - **Frontend**: http://localhost:3000
-   - **Backend API**: http://localhost:8000
-   - **API Docs**: http://localhost:8000/docs
+## 🚀 Deployment
 
-2. **Manual Setup:**
-   
-   **Backend:**
-   ```bash
-   cd backend
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   python main.py
-   ```
-   
-   **Frontend:**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+### Production Deployment
+The application is deployed using:
+- **Frontend**: Vercel (automatic deployments from GitHub)
+- **Backend**: Railway (containerized Python API)
 
-### Command Line Usage
+### Environment Variables
+**Backend (Railway)**:
+```bash
+PORT=8000
+CORS_ORIGINS=https://gwpred.vercel.app
+```
 
-For standalone prediction scripts:
+**Frontend (Vercel)**:
+```bash
+VITE_API_URL=https://gwpredictor.up.railway.app
+```
+
+### Manual Deployment
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+## 🛠️ Development
+
+### Prerequisites
+- **Python 3.11+** (backend)
+- **Node.js 18+** (frontend)
+- **Git** (version control)
+
+### Local Setup
+```bash
+# Backend setup
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1  # Windows
+# source venv/bin/activate     # macOS/Linux
+pip install -r requirements.txt
+python main.py
+
+# Frontend setup (new terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+### API Endpoints
+- `GET /` - API information
+- `GET /health` - Health check
+- `GET /predictions` - Available gameweeks
+- `GET /predictions/{gameweek}` - Specific gameweek predictions
+- `GET /ratings` - Current team ratings
+
+## 📊 Sample Output
+
+### Match Predictions
+```
+Arsenal vs Leeds United
+├── Home Win: 90.9% (Odds: 1.10)
+├── Draw: 4.8% (Odds: 20.83)
+├── Away Win: 4.3% (Odds: 23.26)
+├── Expected Goals: 2.34 - 0.73
+└── Most Likely Score: 2-0
+```
+
+### Team Ratings Table
+```
+Rank | Team              | Rating | Change
+-----|-------------------|--------|--------
+1    | Liverpool         | +1.38  | +0.03
+2    | Arsenal           | +1.26  | +0.01
+3    | Manchester City   | +1.23  | -0.07
+4    | Tottenham         | +0.83  | +0.08
+5    | Chelsea           | +0.67  | +0.02
+```
+
+## 🧪 Testing
 
 ```bash
-# Install Python dependencies
-pip install pandas
+# Backend tests
+cd backend
+python -m pytest
 
-# Run predictions
-python GW1Pred.py  # Gameweek 1 predictions
-python GW2Pred.py  # Gameweek 2 predictions
+# Frontend tests  
+cd frontend
+npm test
+
+# API testing
+curl https://gwpredictor.up.railway.app/health
 ```
 
-Both options provide:
-- Win/Draw/Loss probabilities (%)
-- Fair betting odds
-- Expected goals for each team
-- Most likely scoreline
-- Model rating differences
-- Model rating difference
+## 🤝 Contributing
 
-## Sample Output
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
 
-```
-                        Match  Home %  Draw %  Away %  Fair Home Odds  Fair Draw Odds  Fair Away Odds  Exp Goals (Home)  Exp Goals (Away) Most Likely Score  Model diff (H-A)
-           Liverpool vs Bournemouth    71.2    17.8    11.0            1.40            5.62           9.09               1.89              0.96              2-1              1.70
-    Aston Villa vs Newcastle United    56.9    24.7    18.4            1.76            4.05           5.43               1.55              1.17              1-1              0.40
-                Brighton vs Fulham    53.2    26.1    20.7            1.88            3.83           4.83               1.49              1.21              1-1              0.25
-```
+### Areas for Contribution
+- 🎯 Enhanced prediction algorithms
+- 📊 Additional statistical features
+- 🎨 UI/UX improvements
+- 🧪 Test coverage expansion
+- 📱 Mobile app development
 
-## Model Methodology
+## 📈 Roadmap
 
-1. **Rating Difference**: Calculate the effective rating difference including home advantage
-2. **Draw Probability**: Apply exponential decay to reduce draws for mismatched teams
-3. **Win Probabilities**: Use sigmoid function to split remaining probability mass
-4. **Expected Goals**: Apply exponential scaling based on rating difference
-5. **Scoreline Prediction**: Use Poisson distributions to find most likely score
+- [ ] **Player-level data integration**
+- [ ] **Injury/suspension tracking**
+- [ ] **Weather impact modeling**
+- [ ] **Historical performance analysis**
+- [ ] **Live score integration**
+- [ ] **Mobile app (React Native)**
+- [ ] **Fantasy football integration**
+- [ ] **Multi-league support**
 
-## Limitations
-
-- Ratings are subjective pre-season estimates
-- Model doesn't account for injuries, transfers, or form
-- Historical data not incorporated beyond rating assignments
-- Fixed parameters may not reflect current season dynamics
-
-## Future Improvements
-
-- Incorporate transfer market activity
-- Add injury/suspension tracking
-- Include historical head-to-head records
-- Dynamic rating updates based on results
-- Weather and referee impact factors
-
-## Contributing
-
-Feel free to fork this repository and submit pull requests for improvements. Some areas for contribution:
-- More sophisticated rating systems
-- Additional statistical features
-- Model validation against historical data
-- Alternative probability distributions
-
-## License
+## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-This model is for educational and entertainment purposes only. Please gamble responsibly and within your means if using for betting purposes.
+This application is for educational and entertainment purposes only. The predictions are based on statistical models and should not be considered as professional betting advice. Please gamble responsibly.
+
+## 🙏 Acknowledgments
+
+- **FastAPI** - Modern Python web framework
+- **React** - Frontend library
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful UI components
+- **Vercel** - Frontend hosting platform
+- **Railway** - Backend hosting platform
+
+---
+
+<div align="center">
+
+**[Live Demo](https://gwpred.vercel.app) | [API Docs](https://gwpredictor.up.railway.app/docs) | [Report Bug](https://github.com/TdepbwT/gwpred/issues) | [Request Feature](https://github.com/TdepbwT/gwpred/issues)**
+
+Made with ⚽ by [David Adeoyo](https://github.com/TdepbwT)
+
+</div>
