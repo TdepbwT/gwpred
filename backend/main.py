@@ -267,7 +267,7 @@ async def get_team_ratings():
         ratings_list.append(TeamRating(
             team=team,
             rating=rating,
-            reason=f"Rating after GW1 results"
+            reason= f"Rating after GW {CURRENT_GAMEWEEK - 1} results"
         ))
     
     # Sort by rating descending
