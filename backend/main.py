@@ -167,7 +167,7 @@ GAMEWEEK_FIXTURES = {
         ("Manchester United", "Burnley"),
         ("Aston Villa", "Crystal Palace"),
         ("Brighton & Hove Albion", "Manchester City"),
-        ("Leeds United", "Newcastle"),
+        ("Leeds United", "Newcastle United"),
         ("Nottingham Forest", "West Ham United"),
         ("Wolverhampton Wanderers", "Everton"),
         ("Sunderland", "Brentford"),
