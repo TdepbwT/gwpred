@@ -24,7 +24,8 @@ allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
     "https://gwpred.vercel.app",
-    "https://gwpred-2z4z.vercel.app" 
+    "https://gwpred-2z4z.vercel.app"
+    "https://gwpredictor.up.railway.app/" 
 ]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
