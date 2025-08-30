@@ -24,7 +24,7 @@ allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
     "https://gwpred.vercel.app",
-    "https://gwpred-2z4z.vercel.app"  # Replace with your actual Vercel domain
+    "https://gwpred-2z4z.vercel.app" 
 ]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
@@ -154,15 +154,15 @@ GAMEWEEK_FIXTURES = {
     ],
     3: [
         ("Liverpool", "Arsenal"),
-        ("Chelsea", "Manchester City"),
-        ("Tottenham Hotspur", "Newcastle United"),
-        ("Manchester United", "Brentford"),
-        ("Aston Villa", "West Ham United"),
-        ("Brighton & Hove Albion", "Crystal Palace"),
-        ("Leeds United", "Bournemouth"),
-        ("Nottingham Forest", "Fulham"),
-        ("Sunderland", "Everton"),
-        ("Wolverhampton Wanderers", "Burnley"),
+        ("Chelsea", "Fulham"),
+        ("Tottenham Hotspur", "Bournemouth"),
+        ("Manchester United", "Burnley"),
+        ("Aston Villa", "Crystal Palace"),
+        ("Brighton & Hove Albion", "Manchester City"),
+        ("Leeds United", "Newcastle"),
+        ("Nottingham Forest", "West Ham United"),
+        ("Wolverhampton Wanderers", "Everton"),
+        ("Sunderland", "Brentford"),
     ],
     # Add future gameweeks here
 }
