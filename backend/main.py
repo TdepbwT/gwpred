@@ -23,14 +23,21 @@ import os
 allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
-    "https://gwpred.vercel.app",
-    "https://gwpred-2z4z.vercel.app",
-    "https://gwpredictor.up.railway.app/predictions/3" 
 ]
 # Add environment variable support for production
-cors_origins = os.getenv("CORS_ORIGINS", "").split(",")
-if cors_origins and cors_origins[0]:
-    allowed_origins.extend(cors_origins)
+cors_origins = os.getenv("CORS_ORIGINS", "")
+if cors_origins:
+    for origin in cors_origins.split(","):
+        origin = origin.strip()
+        if origin:
+            allowed_origins.append(origin)
+            
+else:
+    allowed_origins.extend(["https://gwpred.vercel.app",
+                            "https://gwpred-2z4z.vercel.app",
+                            "https://gwpredictor.up.railway.app"])
+
+print(f"Allowed CORS origins: {allowed_origins}")
 
 app.add_middleware(
     CORSMiddleware,
