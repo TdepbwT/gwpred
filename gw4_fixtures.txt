@@ -1,4 +1,4 @@
-# Gameweek 3 Fixtures
+# Gameweek 4 Fixtures
 # Format: Home Team vs Away Team (one per line)
 
 Arsenal vs Nottingham Forest
