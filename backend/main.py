@@ -172,11 +172,23 @@ GAMEWEEK_FIXTURES = {
         ("Wolverhampton Wanderers", "Everton"),
         ("Sunderland", "Brentford"),
     ],
+    4: [
+        ("Arsenal", "Nottingham Forest"),
+        ("Bournemouth", "Brighton and Hove Albion"),
+        ("Crystal Palace", "Sunderland"),
+        ("Everton", "Aston Villa"),
+        ("Fulham", "Leeds United"),
+        ("Newcastle United", "Wolverhampton Wanderers"),
+        ("West Ham United", "Tottenham Hotspur"),
+        ("Brentford", "Chelsea"),
+        ("Burnley", "Liverpool"),
+        ("Manchester City", "Manchester United"),
+    ],
     # Add future gameweeks here
 }
 
 # Current gameweek
-CURRENT_GAMEWEEK = 3
+CURRENT_GAMEWEEK = 4
 SEASON = "2025-26"
 
 # Model parameters
