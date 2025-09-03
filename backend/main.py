@@ -174,7 +174,7 @@ GAMEWEEK_FIXTURES = {
     ],
     4: [
         ("Arsenal", "Nottingham Forest"),
-        ("Bournemouth", "Brighton and Hove Albion"),
+        ("Bournemouth", "Brighton & Hove Albion"),
         ("Crystal Palace", "Sunderland"),
         ("Everton", "Aston Villa"),
         ("Fulham", "Leeds United"),
