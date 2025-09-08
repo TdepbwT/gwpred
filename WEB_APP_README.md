@@ -31,23 +31,30 @@ gw1pred/
 - **CORS enabled** for frontend integration
 - **Pydantic models** for data validation
 - **Dynamic team ratings** updated after each gameweek
+- **Form-based rating system** with opposition strength weighting
+- **Transfer window integration** with updated ratings
+- **Match history tracking** for all gameweeks
+- **Rating progression analysis** over time
 - **Big 6 enhancement parameters** for more accurate predictions
-- **JSON fixture data** with transfer tracking
 
 ### Frontend (React + shadcn/ui)
 - **Modern React** with TypeScript and Vite
 - **shadcn/ui components** for consistent, accessible UI
 - **Tailwind CSS** for responsive styling
 - **Real-time data fetching** from the backend API
-- **Interactive tabs** for predictions and team ratings
+- **Interactive tabs** for predictions, team ratings, and team details
+- **Team analysis pages** with match history and rating progression
+- **Form tracking visualization** with win/draw/loss indicators
 - **Responsive design** for mobile and desktop
 
 ### Prediction Engine
 - **Rating-based model** with home advantage
+- **Form-based rating adjustments** (up to ±0.2 rating points)
 - **Poisson distribution** for expected goals
 - **Dynamic draw probability** based on team strength difference
-- **Transfer impact modeling** (e.g., Ebere Eze to Arsenal)
+- **Transfer impact modeling** (e.g., Ebere Eze to Arsenal, Isak to Liverpool)
 - **Big 6 dominance factors** for enhanced accuracy
+- **Opposition strength weighting** in form calculations
 
 ## Quick Start
 
@@ -114,7 +121,11 @@ gw1pred/
 - **GET /health** - Health check endpoint
 - **GET /predictions/{gameweek}** - Get predictions for specific gameweek
 - **GET /predictions** - List available gameweeks
-- **GET /ratings** - Get current team ratings
+- **GET /ratings** - Get current team ratings with form information
+- **GET /form** - Get team form data for last 5 games
+- **GET /team/{team_name}** - Get detailed team information including match history and rating changes
+- **GET /match-history** - Get complete match history for all gameweeks
+- **GET /rating-history** - Get complete rating history for all teams
 
 ### Example API Response
 
@@ -201,6 +212,16 @@ The prediction model uses these enhanced parameters:
 - **Backend logs**: Console output from FastAPI server
 - **Frontend logs**: Browser developer console
 - **Network requests**: Browser Network tab
+
+## Recent Updates
+
+### Version 2.0 Features (Implemented)
+- **Form-based rating system**: Tracks last 5 games with opposition strength weighting
+- **Transfer window integration**: Updated ratings reflecting summer 2025 signings
+- **Team analysis pages**: Detailed match history and rating progression
+- **Enhanced API endpoints**: Team details, match history, and rating history
+- **Visual form tracking**: Win/draw/loss indicators with color coding
+- **Rating progression charts**: Track team improvements over time
 
 ## Future Enhancements
 

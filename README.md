@@ -29,7 +29,9 @@ cd gwpred
 ## Features
 
 ### Prediction Engine
-- **Dynamic Team Ratings**: Automatically updated based on match results
+- **Dynamic Team Ratings**: Automatically updated based on match results and transfer activity
+- **Form-Based Rating System**: Recent performance tracking with opposition strength weighting
+- **Transfer Window Integration**: Updated ratings reflecting summer 2025 signings
 - **Multiple Gameweeks**: Support for entire season with easy gameweek management
 - **Advanced Modeling**: Home advantage, Big 6 bonuses, dynamic draw probabilities
 - **Expected Goals**: Poisson-based goal expectation with most likely scorelines
@@ -38,7 +40,10 @@ cd gwpred
 ### Modern Web Interface
 - **Responsive Design**: Beautiful UI built with React and Tailwind CSS
 - **Real-time Data**: Live predictions from FastAPI backend
-- **Interactive Tabs**: Switch between predictions and team ratings
+- **Interactive Tabs**: Switch between predictions, team ratings, and team details
+- **Team Analysis**: Detailed team pages with match history and rating progression
+- **Form Tracking**: Visual representation of team form over last 5 games
+- **Rating History**: Track rating changes and improvements over time
 - **Mobile Optimized**: Works perfectly on all devices
 - **Accessible**: WCAG compliant with keyboard navigation
 
@@ -48,7 +53,7 @@ cd gwpred
 - **Hot Reload**: Development servers with instant updates
 - **Easy Deployment**: Ready for Vercel (frontend) and Railway (backend)
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 gw1pred/
@@ -90,15 +95,15 @@ The system uses an advanced rating-based model that considers:
 - **Draw Probability Decay**: Fewer draws in mismatched fixtures
 - **Expected Goals**: Poisson distribution modeling
 
-### Current Team Ratings (Post-GW2)
+### Current Team Ratings (Post-GW3 + Transfer Updates)
 ```python
-"Liverpool": 1.38        # Top rated team
-"Arsenal": 1.26          # Strong title contenders  
-"Manchester City": 1.23  # Defending champions
-"Tottenham Hotspur": 0.83
-"Chelsea": 0.67
-"Aston Villa": 0.36
-# ... (see main.py for complete ratings)
+"Liverpool": 1.45        # Top rated team (+ Isak, Wirtz signings)
+"Arsenal": 1.35          # Strong title contenders (+ Eze, Gyökeres, Zubimendi)
+"Manchester City": 1.20  # Defending champions (+ Reijnders)
+"Tottenham Hotspur": 0.70
+"Chelsea": 0.75          # Improved (+ Joao Pedro)
+"Manchester United": 0.30 # Enhanced (+ Sesko, Mbeumo, Cunha)
+# ... (see main.py for complete ratings with form boosts)
 ```
 
 ### Model Parameters
@@ -197,7 +202,11 @@ npm run dev
 - `GET /health` - Health check
 - `GET /predictions` - Available gameweeks
 - `GET /predictions/{gameweek}` - Specific gameweek predictions
-- `GET /ratings` - Current team ratings
+- `GET /ratings` - Current team ratings with form information
+- `GET /form` - Team form data for last 5 games
+- `GET /team/{team_name}` - Detailed team information including match history and rating changes
+- `GET /match-history` - Complete match history for all gameweeks
+- `GET /rating-history` - Complete rating history for all teams
 
 ## Sample Output
 
@@ -211,15 +220,37 @@ Arsenal vs Leeds United
 └── Most Likely Score: 2-0
 ```
 
+### Team Analysis Features
+The application now includes comprehensive team analysis capabilities:
+
+**Team Details Page:**
+- Current effective rating (base + form boost)
+- Match history with results and venues
+- Rating progression over gameweeks
+- Form tracking with visual indicators
+- Recent rating changes and improvements
+
+**Form System:**
+- Tracks last 5 games for each team
+- Visual form indicators (Win/Draw/Loss)
+- Opposition strength weighting
+- Form-based rating adjustments (up to ±0.2)
+
+**Match History:**
+- Complete results for all gameweeks
+- Home/Away venue indicators
+- Score displays and result tracking
+- Chronological match progression
+
 ### Team Ratings Table
 ```
-Rank | Team              | Rating | Change
------|-------------------|--------|--------
-1    | Liverpool         | +1.38  | +0.03
-2    | Arsenal           | +1.26  | +0.01
-3    | Manchester City   | +1.23  | -0.07
-4    | Tottenham         | +0.83  | +0.08
-5    | Chelsea           | +0.67  | +0.02
+Rank | Team              | Base Rating | Form Boost | Effective Rating
+-----|-------------------|-------------|------------|-----------------
+1    | Liverpool         | +1.45       | +0.12      | +1.57
+2    | Arsenal           | +1.35       | +0.12      | +1.47
+3    | Manchester City   | +1.20       | +0.12      | +1.32
+4    | Chelsea           | +0.75       | +0.12      | +0.87
+5    | Tottenham         | +0.70       | +0.04      | +0.74
 ```
 
 ## Testing
@@ -248,10 +279,13 @@ curl https://gwpredictor.up.railway.app/health
 
 ## Roadmap
 
+- [x] **Form-based rating system** - Implemented with opposition strength weighting
+- [x] **Transfer window integration** - Updated ratings reflecting summer 2025 signings
+- [x] **Team analysis pages** - Detailed match history and rating progression
+- [x] **Enhanced API endpoints** - Team details, match history, and rating history
 - [ ] **Player-level data integration**
 - [ ] **Injury/suspension tracking**
 - [ ] **Weather impact modeling**
-- [ ] **Historical performance analysis**
 - [ ] **Live score integration**
 - [ ] **Mobile app (React Native)**
 - [ ] **Fantasy football integration**
