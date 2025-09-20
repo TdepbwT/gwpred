@@ -86,56 +86,56 @@ class TeamRatingsResponse(BaseModel):
     ratings: List[TeamRating]
     last_updated: str
 
-# Current team ratings (post-GW3 + transfer window updates)
+# Current team ratings (post-GW4 results)
 # Updated based on GW2 & GW3 results and major summer 2025 transfers
 CURRENT_RATINGS = {
-    "Manchester City": 1.20,      # +0.05 (Tijjani Reijnders signing, good form)
-    "Arsenal": 1.35,              # +0.12 (Eze, Gyökeres, Zubimendi signings + strong results)
-    "Liverpool": 1.45,            # +0.03 (Isak £125m, Wirtz £100m signings + good form)
-    "Tottenham Hotspur": 0.70,    # -0.04 (Xavi Simons signing but mixed results)
-    "Aston Villa": 0.25,          # -0.05 (poor recent form, no major signings)
-    "Chelsea": 0.75,              # +0.06 (Joao Pedro signing + improved results)
-    "Newcastle United": 0.35,     # +0.02 (solid form despite losing Isak)
-    "Manchester United": 0.30,    # +0.07 (Sesko, Mbeumo, Cunha signings + better form)
-    "Brighton & Hove Albion": 0.25,  # +0.05 (good recent results)
-    "West Ham United": -0.25,     # +0.13 (significant improvement in form)
-    "Brentford": -0.05,           # -0.08 (poor recent results)
-    "Everton": 0.05,              # +0.08 (improved form)
-    "Wolverhampton Wanderers": -0.20,  # +0.03 (slight improvement)
-    "Nottingham Forest": 0.00,    # -0.04 (mixed results)
-    "Crystal Palace": 0.15,       # +0.06 (good form despite losing Eze)
-    "Fulham": 0.10,               # +0.05 (decent form)
-    "Leeds United": -0.05,        # +0.03 (slight improvement)
-    "Bournemouth": -0.10,         # +0.05 (improved form)
-    "Burnley": -0.35,             # +0.04 (slight improvement)
-    "Sunderland": 0.35,           # +0.06 (excellent form continues)
+    "Manchester City": 1.25,      # +0.05 (3-0 win vs Man Utd, strong performance)
+    "Arsenal": 1.40,              # +0.05 (3-0 win vs Nottingham Forest, good form continues)
+    "Liverpool": 1.48,            # +0.03 (1-0 win vs Burnley, maintaining form)
+    "Tottenham Hotspur": 0.75,    # +0.05 (3-0 win vs West Ham, good performance)
+    "Aston Villa": 0.23,          # -0.02 (0-0 draw vs Everton, still struggling)
+    "Chelsea": 0.73,              # -0.02 (2-2 draw vs Brentford, dropped points)
+    "Newcastle United": 0.38,     # +0.03 (1-0 win vs Wolves, solid result)
+    "Manchester United": 0.22,    # -0.08 (0-3 loss vs Man City, poor performance)
+    "Brighton & Hove Albion": 0.20, # -0.05 (1-2 loss vs Bournemouth, disappointing)
+    "West Ham United": -0.35,     # -0.10 (0-3 loss vs Spurs, heavy defeat)
+    "Brentford": -0.03,           # +0.02 (2-2 draw vs Chelsea, good point)
+    "Everton": 0.07,              # +0.02 (0-0 draw vs Villa, decent point)
+    "Wolverhampton Wanderers": -0.25, # -0.05 (0-1 loss vs Newcastle, another loss)
+    "Nottingham Forest": -0.05,   # -0.05 (0-3 loss vs Arsenal, heavy defeat)
+    "Crystal Palace": 0.18,       # +0.03 (0-0 draw vs Sunderland, solid point)
+    "Fulham": 0.13,               # +0.03 (1-0 win vs Leeds, good result)
+    "Leeds United": -0.10,        # -0.05 (0-1 loss vs Fulham, another loss)
+    "Bournemouth": -0.05,         # +0.05 (2-1 win vs Brighton, excellent result)
+    "Burnley": -0.40,             # -0.05 (0-1 loss vs Liverpool, another loss)
+    "Sunderland": 0.33,           # -0.02 (0-0 draw vs Palace, missed opportunity)
 }
 
-# Team form tracking for last 5 games
+# Team form tracking for last 5 games (updated with GW4 results)
 TEAM_FORM = {
-    "Manchester City": [1, 0, 1, 1, 1],  # W-L-W-W-W (last 5 games)
-    "Arsenal": [1, 1, 0, 1, 1],          # W-W-L-W-W
-    "Liverpool": [1, 1, 1, 0, 1],        # W-W-W-L-W
-    "Tottenham Hotspur": [1, 1, 0, 1, 0], # W-W-L-W-L
-    "Aston Villa": [0, 0, 0, 0, 0],      # D-L-L-L-L
-    "Chelsea": [0, 1, 1, 1, 1],          # D-W-W-W-W
-    "Newcastle United": [0, 0, 1, 0, 0], # D-L-W-L-D
-    "Manchester United": [0, 0, 1, 1, 1], # D-L-W-W-W
-    "Brighton & Hove Albion": [0, 0, 1, 1, 0], # D-L-W-W-L
-    "West Ham United": [0, 1, 1, 0, 1],  # D-W-W-L-W
-    "Brentford": [0, 0, 0, 0, 0],        # L-L-L-L-L
-    "Everton": [0, 1, 1, 0, 1],          # L-W-W-L-W
-    "Wolverhampton Wanderers": [0, 0, 0, 1, 0], # L-L-L-W-L
-    "Nottingham Forest": [0, 0, 1, 0, 0], # L-L-W-L-L
-    "Crystal Palace": [0, 0, 1, 1, 1],   # L-L-W-W-W
-    "Fulham": [0, 0, 0, 0, 0],           # D-L-L-L-L
-    "Leeds United": [1, 0, 0, 0, 0],     # W-L-L-L-D
-    "Bournemouth": [0, 1, 1, 0, 0],      # L-W-W-L-L
-    "Burnley": [0, 0, 0, 1, 0],          # L-L-L-W-L
-    "Sunderland": [1, 1, 1, 1, 0],       # W-W-W-W-L
+    "Manchester City": [0, 1, 1, 1, 1],    # L-W-W-W-W (last 5 games)
+    "Arsenal": [1, 0, 1, 1, 1],            # W-L-W-W-W
+    "Liverpool": [1, 1, 0, 1, 1],          # W-W-L-W-W
+    "Tottenham Hotspur": [1, 0, 1, 0, 1],  # W-L-W-L-W
+    "Aston Villa": [0, 0, 0, 0, 0.5],      # L-L-L-L-D
+    "Chelsea": [1, 1, 1, 1, 0.5],          # W-W-W-W-D
+    "Newcastle United": [0, 1, 0, 0, 1],   # L-W-L-D-W
+    "Manchester United": [0, 1, 1, 1, 0],  # L-W-W-W-L
+    "Brighton & Hove Albion": [0, 1, 1, 0, 0], # L-W-W-L-L
+    "West Ham United": [1, 1, 0, 1, 0],    # W-W-L-W-L
+    "Brentford": [0, 0, 0, 0, 0.5],        # L-L-L-L-D
+    "Everton": [1, 1, 0, 1, 0.5],          # W-W-L-W-D
+    "Wolverhampton Wanderers": [0, 0, 1, 0, 0], # L-L-W-L-L
+    "Nottingham Forest": [0, 1, 0, 0, 0],  # L-W-L-L-L
+    "Crystal Palace": [0, 1, 1, 1, 0.5],   # L-W-W-W-D
+    "Fulham": [0, 0, 0, 0, 1],             # L-L-L-L-W
+    "Leeds United": [0, 0, 0, 0.5, 0],     # L-L-L-D-L
+    "Bournemouth": [1, 1, 0, 0, 1],        # W-W-L-L-W
+    "Burnley": [0, 0, 1, 0, 0],            # L-L-W-L-L
+    "Sunderland": [1, 1, 1, 0, 0.5],       # W-W-W-L-D
 }
 
-# Match history and rating changes tracking
+# Match history - add GW4 results
 MATCH_HISTORY = {
     # GW1 Results
     1: {
@@ -175,31 +175,44 @@ MATCH_HISTORY = {
         "Nottingham Forest vs West Ham United": {"Nottingham Forest": 0, "West Ham United": 3},
         "Liverpool vs Arsenal": {"Liverpool": 1, "Arsenal": 0},
         "Aston Villa vs Crystal Palace": {"Aston Villa": 0, "Crystal Palace": 3},
+    },
+    # GW4 Results
+    4: {
+        "Manchester City vs Manchester United": {"Manchester City": 3, "Manchester United": 0},
+        "Burnley vs Liverpool": {"Burnley": 0, "Liverpool": 1},
+        "Brentford vs Chelsea": {"Brentford": 2, "Chelsea": 2},
+        "West Ham United vs Tottenham Hotspur": {"West Ham United": 0, "Tottenham Hotspur": 3},
+        "Bournemouth vs Brighton & Hove Albion": {"Bournemouth": 2, "Brighton & Hove Albion": 1},
+        "Crystal Palace vs Sunderland": {"Crystal Palace": 0, "Sunderland": 0},
+        "Everton vs Aston Villa": {"Everton": 0, "Aston Villa": 0},
+        "Fulham vs Leeds United": {"Fulham": 1, "Leeds United": 0},
+        "Newcastle United vs Wolverhampton Wanderers": {"Newcastle United": 1, "Wolverhampton Wanderers": 0},
+        "Arsenal vs Nottingham Forest": {"Arsenal": 3, "Nottingham Forest": 0},
     }
 }
 
-# Rating history tracking (simplified - in real implementation, this would be more detailed)
+# Rating history tracking (add GW4 data)
 RATING_HISTORY = {
-    "Manchester City": [1.15, 1.20, 1.20],  # GW1, GW2, GW3
-    "Arsenal": [1.23, 1.35, 1.35],
-    "Liverpool": [1.42, 1.45, 1.45],
-    "Tottenham Hotspur": [0.74, 0.70, 0.70],
-    "Aston Villa": [0.30, 0.25, 0.25],
-    "Chelsea": [0.69, 0.75, 0.75],
-    "Newcastle United": [0.33, 0.35, 0.35],
-    "Manchester United": [0.23, 0.30, 0.30],
-    "Brighton & Hove Albion": [0.20, 0.25, 0.25],
-    "West Ham United": [-0.38, -0.25, -0.25],
-    "Brentford": [0.03, -0.05, -0.05],
-    "Everton": [-0.03, 0.05, 0.05],
-    "Wolverhampton Wanderers": [-0.23, -0.20, -0.20],
-    "Nottingham Forest": [0.04, 0.00, 0.00],
-    "Crystal Palace": [0.09, 0.15, 0.15],
-    "Fulham": [0.05, 0.10, 0.10],
-    "Leeds United": [-0.08, -0.05, -0.05],
-    "Bournemouth": [-0.15, -0.10, -0.10],
-    "Burnley": [-0.39, -0.35, -0.35],
-    "Sunderland": [0.29, 0.35, 0.35],
+    "Manchester City": [1.15, 1.20, 1.20, 1.25],
+    "Arsenal": [1.23, 1.35, 1.35, 1.40],
+    "Liverpool": [1.42, 1.45, 1.45, 1.48],
+    "Tottenham Hotspur": [0.74, 0.70, 0.70, 0.75],
+    "Aston Villa": [0.30, 0.25, 0.25, 0.23],
+    "Chelsea": [0.69, 0.75, 0.75, 0.73],
+    "Newcastle United": [0.33, 0.35, 0.35, 0.38],
+    "Manchester United": [0.23, 0.30, 0.30, 0.22],
+    "Brighton & Hove Albion": [0.20, 0.25, 0.25, 0.20],
+    "West Ham United": [-0.38, -0.25, -0.25, -0.35],
+    "Brentford": [0.03, -0.05, -0.05, -0.03],
+    "Everton": [-0.03, 0.05, 0.05, 0.07],
+    "Wolverhampton Wanderers": [-0.23, -0.20, -0.20, -0.25],
+    "Nottingham Forest": [0.04, 0.00, 0.00, -0.05],
+    "Crystal Palace": [0.09, 0.15, 0.15, 0.18],
+    "Fulham": [0.05, 0.10, 0.10, 0.13],
+    "Leeds United": [-0.08, -0.05, -0.05, -0.10],
+    "Bournemouth": [-0.15, -0.10, -0.10, -0.05],
+    "Burnley": [-0.39, -0.35, -0.35, -0.40],
+    "Sunderland": [0.29, 0.35, 0.35, 0.33],
 }
 
 def calculate_form_boost(team: str) -> float:
@@ -365,11 +378,23 @@ GAMEWEEK_FIXTURES = {
         ("Burnley", "Liverpool"),
         ("Manchester City", "Manchester United"),
     ],
+    5: [
+        ("Liverpool", "Everton"),
+        ("Brighton and Hove Albion", "Tottenham Hotspur"),
+        ("Burnley", "Nottingham Forest"),
+        ("West Ham", "Crystal Palace"),
+        ("Wolverhampton Wanderers", "Leeds United"),
+        ("Manchester United", "Chelsea"),
+        ("Fulham", "Brentford"),
+        ("Bournemouth", "Newcastle"),
+        ("Sunderland", "Aston Villa"),
+        ("Arsenal", "Manchester City"),
+    ],
     # Add future gameweeks here
 }
 
-# Current gameweek
-CURRENT_GAMEWEEK = 4
+# Current gameweek (update to 5 for next predictions)
+CURRENT_GAMEWEEK = 5
 SEASON = "2025-26"
 
 # Model parameters
