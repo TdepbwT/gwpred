@@ -24,7 +24,8 @@ allowed_origins = ["http://localhost:5000",          # For some browsers
                   "http://127.0.0.1:5000",          # For most browsers (this is the key one!)
                   "https://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",  # Replit domain (HTTPS)
                   "http://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
-                  "https://gwpred-backend.onrender.com/"  # Replit domain (HTTP)
+                  "https://gwpred-backend.onrender.com"
+                  "https://gwpred.netlify.app"# Replit domain (HTTP)
                   ]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "")
