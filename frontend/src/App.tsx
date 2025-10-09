@@ -75,7 +75,7 @@ interface TeamDetails {
   current_gameweek: number
 }
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'https://gwpred-production.up.railway.app'
+const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'https://gwpred-backend.onrender.com/'
 
 function App() {
   const [predictions, setPredictions] = useState<GameweekPredictions | null>(null)
