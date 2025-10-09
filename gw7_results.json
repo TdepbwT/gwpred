@@ -1,0 +1,13 @@
+{
+    "Bournemouth vs Fulham": {"Bournemouth": 3, "Fulham": 1},
+    "Leeds United vs Tottenham Hotspur": {"Leeds United": 1, "Tottenham Hotspur": 2},
+    "Arsenal vs West Ham United": {"Arsenal": 2, "West Ham United": 0},
+    "Manchester United vs Sunderland": {"Manchester United": 2, "Sunderland": 0},
+    "Chelsea vs Liverpool": {"Chelsea": 2, "Liverpool": 1},
+    "Aston Villa vs Burnley": {"Aston Villa": 2, "Burnley": 1},
+    "Everton vs Crystal Palace": {"Everton": 2, "Crystal Palace": 1},
+    "Newcastle United vs Nottingham Forest": {"Newcastle United": 2, "Nottingham Forest": 0},
+    "Wolverhampton Wanderers vs Brighton & Hove Albion": {"Wolverhampton Wanderers": 1, "Brighton & Hove Albion": 1},
+    "Brentford vs Manchester City": {"Brentford": 0, "Manchester City": 1}
+  
+}
