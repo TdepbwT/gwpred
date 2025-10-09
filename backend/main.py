@@ -23,6 +23,7 @@ import os
 allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
+    "b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev"
 ]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "")
