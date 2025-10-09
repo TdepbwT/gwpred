@@ -111,28 +111,28 @@ CURRENT_RATINGS = {
     "Sunderland": 0.30,           # -0.02 (0-0 draw vs Palace, missed opportunity)
 }
 
-# Team form tracking for last 5 games (updated with GW4 results)
+# Team form tracking for last 5 games (updated with GW7 results)
 TEAM_FORM = {
-    "Manchester City": [0, 1, 0.5, 1, 1],    # L-W-W-W-W (last 5 games)
-    "Arsenal": [0, 1, 0.5, 1, 1],            # W-L-W-W-W
-    "Liverpool": [1, 1, 1, 0, 0],          # W-W-L-W-W
-    "Tottenham Hotspur": [0, 1, 0.5, 0.5, 1],  # W-L-W-L-W
-    "Aston Villa": [0, 0.5, 0.5, 1, 1],      # L-L-L-L-D
-    "Chelsea": [1, 0.5, 0, 0, 1],          # W-W-W-W-D
-    "Newcastle United": [0.5, 1, 0.5, 0, 1],   # L-W-L-D-W
-    "Manchester United": [1, 0, 1, 0, 1],  # L-W-W-W-L
-    "Brighton & Hove Albion": [1, 0, 0.5, 1, 0.5], # L-W-W-L-L
-    "West Ham United": [1, 0, 0, 0.5, 0],    # W-W-L-W-L
-    "Brentford": [0, 0.5, 0, 1, 0],        # L-L-L-L-D
-    "Everton": [1, 0.5, 0, 0.5, 1],          # W-W-L-W-D
-    "Wolverhampton Wanderers": [0, 0, 0, 0.5, 0.5], # L-L-W-L-L
-    "Nottingham Forest": [0, 0, 0.5, 0, 0],  # L-W-L-L-L
-    "Crystal Palace": [1, 0.5, 1, 1, 0],   # L-W-W-W-D
-    "Fulham": [0, 1, 1, 0, 0],             # L-L-L-L-W
-    "Leeds United": [0.5, 0, 1, 0.5, 0],     # L-L-L-D-L
-    "Bournemouth": [1, 1, 0.5, 0.5, 1],        # W-W-L-L-W
-    "Burnley": [0, 0, 0.5, 0, 0],            # L-L-W-L-L
-    "Sunderland": [1, 0.5, 0.5, 1, 0],       # W-W-W-L-D
+    "Manchester City": [0, 1, 0.5, 1, 1],    # L-W-D-W-W (last 5 games)
+    "Arsenal": [0, 1, 0.5, 1, 1],            # L-W-D-W-W
+    "Liverpool": [1, 1, 1, 0, 0],          # W-W-W-L-L
+    "Tottenham Hotspur": [0, 1, 0.5, 0.5, 1],  # L-W-D-D-W
+    "Aston Villa": [0, 0.5, 0.5, 1, 1],      # L-D-D-W-W
+    "Chelsea": [1, 0.5, 0, 0, 1],          # W-D-L-L-W
+    "Newcastle United": [0.5, 1, 0.5, 0, 1],   # D-W-D-L-W
+    "Manchester United": [1, 0, 1, 0, 1],  # W-D-W-L-W
+    "Brighton & Hove Albion": [1, 0, 0.5, 1, 0.5], # W-L-D-W-D
+    "West Ham United": [1, 0, 0, 0.5, 0],    # W-L-L-D-L
+    "Brentford": [0, 0.5, 0, 1, 0],        # L-D-L-W-L
+    "Everton": [1, 0.5, 0, 0.5, 1],          # W-D-L-D-W
+    "Wolverhampton Wanderers": [0, 0, 0, 0.5, 0.5], # L-L-L-D-D
+    "Nottingham Forest": [0, 0, 0.5, 0, 0],  # L-L-D-L-L
+    "Crystal Palace": [1, 0.5, 1, 1, 0],   # W-D-W-W-L
+    "Fulham": [0, 1, 1, 0, 0],             # D-W-W-L-L
+    "Leeds United": [0.5, 0, 1, 0.5, 0],     # D-L-W-D-L
+    "Bournemouth": [1, 1, 0.5, 0.5, 1],        # W-W-D-D-W
+    "Burnley": [0, 0, 0.5, 0, 0],            # L-L-D-L-L
+    "Sunderland": [1, 0.5, 0.5, 1, 0],       # W-D-D-W-L
 }
 
 # Match history - add GW4 results
@@ -231,7 +231,7 @@ def calculate_form_boost(team: str) -> float:
     form_results = TEAM_FORM[team]
     
     # Calculate points from last 5 games (3 for win, 1 for draw, 0 for loss)
-    total_points = sum(form_results) * 3  # Assuming all are wins for now
+    total_points = sum([3 if r == 1 else 1 if r == 0.5 else 0 for r in form_results])
     
     # Base form rating (0-15 points possible)
     form_rating = total_points / 15.0  # Normalize to 0-1
@@ -380,7 +380,7 @@ GAMEWEEK_FIXTURES = {
     ],
     5: [
         ("Liverpool", "Everton"),
-        ("Brighton and Hove Albion", "Tottenham Hotspur"),
+        ("Brighton & Hove Albion", "Tottenham Hotspur"),
         ("Burnley", "Nottingham Forest"),
         ("West Ham", "Crystal Palace"),
         ("Wolverhampton Wanderers", "Leeds United"),
@@ -392,7 +392,7 @@ GAMEWEEK_FIXTURES = {
     ],
     6: [
         ("Brentford", "Manchester United"),
-        ("Chelsea", "Brighton and Hove Albion"),
+        ("Chelsea", "Brighton & Hove Albion"),
         ("Crystal Palace", "Liverpool"),
         ("Leeds United", "Bournemouth"),
         ("Manchester City", "Burnley"),
@@ -411,7 +411,7 @@ GAMEWEEK_FIXTURES = {
         ("Aston Villa", "Burnley"),
         ("Everton", "Crystal Palace"),
         ("Newcastle United", "Nottingham Forest"),
-        ("Wolverhampton Wanderers", "Brighton and Hove Albion"),
+        ("Wolverhampton Wanderers", "Brighton & Hove Albion"),
         ("Brentford", "Manchester City"),
     ],
     # Add future gameweeks here
