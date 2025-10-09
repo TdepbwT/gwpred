@@ -7,10 +7,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Optional
-import math
 import json
 from datetime import datetime
 from pathlib import Path
+import os
+import math
+import uvicorn
 
 app = FastAPI(
     title="Premier League Prediction API",
@@ -19,32 +21,39 @@ app = FastAPI(
 )
 
 # Enable CORS for React frontend
-import os
-allowed_origins = ["http://localhost:5000",          # For some browsers
-                  "http://127.0.0.1:5000",          # For most browsers (this is the key one!)
-                  "https://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",  # Replit domain (HTTPS)
-                  "http://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
-                  "https://gwpred-backend.onrender.com"
-                  "https://gwpred.netlify.app"# Replit domain (HTTP)
-                  ]
-# Add environment variable support for production
+allowed_origins = [
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    "https://gwpred.netlify.app",
+]
+
+# Optional: keep any other dev/test origins you need
+allowed_origins += [
+    "https://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
+    "http://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
+]
+
+# Add environment variable support for production (comma-separated list)
 cors_origins = os.getenv("CORS_ORIGINS", "")
 if cors_origins:
     for origin in cors_origins.split(","):
         origin = origin.strip()
-        if origin:
+        if origin and origin not in allowed_origins:
             allowed_origins.append(origin)
-            
 else:
-    allowed_origins.extend(["https://gwpred.vercel.app",
-                            "https://gwpred-2z4z.vercel.app",
-                            "https://gwpredictor.up.railway.app"])
+    allowed_origins.extend([
+        "https://gwpred.vercel.app",
+        "https://gwpred-2z4z.vercel.app",
+        "https://gwpredictor.up.railway.app",
+    ])
 
 print(f"Allowed CORS origins: {allowed_origins}")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
+    # Allow Netlify branch/preview deploys too (optional)
+    allow_origin_regex=r"https://([a-z0-9-]+--)?gwpred\.netlify\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -731,7 +740,6 @@ async def get_available_gameweeks():
     }
 
 if __name__ == "__main__":
-    import uvicorn
     port = int(os.getenv("PORT", 8000))
     host = os.getenv("HOST", "0.0.0.0")
     print(f"Starting server on {host}:{port}")
