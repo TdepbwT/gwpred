@@ -193,26 +193,26 @@ MATCH_HISTORY = {
 
 # Rating history tracking (add GW4 data)
 RATING_HISTORY = {
-    "Manchester City": [1.15, 1.20, 1.20, 1.25],
-    "Arsenal": [1.23, 1.35, 1.35, 1.40],
-    "Liverpool": [1.42, 1.45, 1.45, 1.48],
-    "Tottenham Hotspur": [0.74, 0.70, 0.70, 0.75],
-    "Aston Villa": [0.30, 0.25, 0.25, 0.23],
-    "Chelsea": [0.69, 0.75, 0.75, 0.73],
-    "Newcastle United": [0.33, 0.35, 0.35, 0.38],
-    "Manchester United": [0.23, 0.30, 0.30, 0.22],
-    "Brighton & Hove Albion": [0.20, 0.25, 0.25, 0.20],
-    "West Ham United": [-0.38, -0.25, -0.25, -0.35],
-    "Brentford": [0.03, -0.05, -0.05, -0.03],
-    "Everton": [-0.03, 0.05, 0.05, 0.07],
-    "Wolverhampton Wanderers": [-0.23, -0.20, -0.20, -0.25],
-    "Nottingham Forest": [0.04, 0.00, 0.00, -0.05],
-    "Crystal Palace": [0.09, 0.15, 0.15, 0.18],
-    "Fulham": [0.05, 0.10, 0.10, 0.13],
-    "Leeds United": [-0.08, -0.05, -0.05, -0.10],
-    "Bournemouth": [-0.15, -0.10, -0.10, -0.05],
-    "Burnley": [-0.39, -0.35, -0.35, -0.40],
-    "Sunderland": [0.29, 0.35, 0.35, 0.33],
+    "Manchester City": [1.15, 1.20, 1.20, 1.21, 1.26],
+    "Arsenal": [1.23, 1.35, 1.35, 1.35, 1.40],
+    "Liverpool": [1.42, 1.45, 1.45, 1.40, 1.43],
+    "Tottenham Hotspur": [0.74, 0.70, 0.70, 0.72, 0.77],
+    "Aston Villa": [0.30, 0.25, 0.25, 0.27, 0.25],
+    "Chelsea": [0.69, 0.75, 0.75, 0.81, 0.79],
+    "Newcastle United": [0.33, 0.35, 0.35, 0.38, 0.41],
+    "Manchester United": [0.23, 0.30, 0.30, 0.34, 0.26],
+    "Brighton & Hove Albion": [0.20, 0.25, 0.25, 0.21, 0.16],
+    "West Ham United": [-0.38, -0.25, -0.25, -0.27, -0.37],
+    "Brentford": [0.03, -0.05, -0.05, -0.06, -0.04],
+    "Everton": [-0.03, 0.05, 0.05, 0.10, 0.12],
+    "Wolverhampton Wanderers": [-0.23, -0.20, -0.20, -0.26, -0.31],
+    "Nottingham Forest": [0.04, 0.00, 0.00, -0.03, -0.08],
+    "Crystal Palace": [0.09, 0.15, 0.15, 0.12, 0.15],
+    "Fulham": [0.05, 0.10, 0.10, 0.09, 0.12],
+    "Leeds United": [-0.08, -0.05, -0.05, -0.06, -0.11],
+    "Bournemouth": [-0.15, -0.10, -0.10, -0.13, -0.08],
+    "Burnley": [-0.39, -0.35, -0.35, -0.40, -0.45],
+    "Sunderland": [0.29, 0.35, 0.35, 0.32, 0.30],
 }
 
 def calculate_form_boost(team: str) -> float:
@@ -236,12 +236,9 @@ def calculate_form_boost(team: str) -> float:
     # Base form rating (0-15 points possible)
     form_rating = total_points / 15.0  # Normalize to 0-1
     
-    # Apply opposition strength weighting
-    # For now, using a simple approach - can be enhanced with actual opposition data
-    opposition_multiplier = 1.0
     
     # Calculate form boost (max 0.2 boost for perfect form)
-    form_boost = (form_rating - 0.5) * 0.4 * opposition_multiplier
+    form_boost = (form_rating - 0.5) * 0.4 
     
     return round(form_boost, 3)
 
@@ -382,11 +379,11 @@ GAMEWEEK_FIXTURES = {
         ("Liverpool", "Everton"),
         ("Brighton & Hove Albion", "Tottenham Hotspur"),
         ("Burnley", "Nottingham Forest"),
-        ("West Ham", "Crystal Palace"),
+        ("West Ham United", "Crystal Palace"),
         ("Wolverhampton Wanderers", "Leeds United"),
         ("Manchester United", "Chelsea"),
         ("Fulham", "Brentford"),
-        ("Bournemouth", "Newcastle"),
+        ("Bournemouth", "Newcastle United"),
         ("Sunderland", "Aston Villa"),
         ("Arsenal", "Manchester City"),
     ],
