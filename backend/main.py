@@ -427,7 +427,7 @@ GAMEWEEK_FIXTURES = {
 }
 
 # Current gameweek (update to 5 for next predictions)
-CURRENT_GAMEWEEK = 5
+CURRENT_GAMEWEEK = 7
 SEASON = "2025-26"
 
 # Model parameters
