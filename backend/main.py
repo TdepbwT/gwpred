@@ -20,7 +20,7 @@ app = FastAPI(
 
 # Enable CORS for React frontend
 import os
-allowed_origins = [*]
+allowed_origins = ["*"]
 # Add environment variable support for production
 cors_origins = os.getenv("CORS_ORIGINS", "")
 if cors_origins:
