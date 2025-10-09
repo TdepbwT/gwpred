@@ -1,0 +1,68 @@
+2025-10-09T20:42:25.286298631Z ==> Cloning from https://github.com/TdepbwT/gwpred
+2025-10-09T20:42:29.067630244Z ==> Checking out commit a61527dcffa7387b18cbf03a4fd470878799d009 in branch webapp
+2025-10-09T20:43:03.369139592Z ==> Installing Python version 3.13.4...
+2025-10-09T20:43:13.824044715Z ==> Using Python version 3.13.4 (default)
+2025-10-09T20:43:13.848094541Z ==> Docs on specifying a Python version: https://render.com/docs/python-version
+2025-10-09T20:43:17.016342128Z ==> Using Poetry version 2.1.3 (default)
+2025-10-09T20:43:17.065751791Z ==> Docs on specifying a Poetry version: https://render.com/docs/poetry-version
+2025-10-09T20:43:17.09077233Z ==> Running build command './build.sh'...
+2025-10-09T20:43:18.05955604Z Collecting fastapi==0.104.1 (from -r requirements.txt (line 1))
+2025-10-09T20:43:18.101002866Z   Downloading fastapi-0.104.1-py3-none-any.whl.metadata (24 kB)
+2025-10-09T20:43:18.449698936Z Collecting uvicorn==0.24.0 (from uvicorn[standard]==0.24.0->-r requirements.txt (line 2))
+2025-10-09T20:43:18.454924259Z   Downloading uvicorn-0.24.0-py3-none-any.whl.metadata (6.4 kB)
+2025-10-09T20:43:18.787609793Z Collecting pydantic==2.5.0 (from -r requirements.txt (line 3))
+2025-10-09T20:43:18.801979851Z   Downloading pydantic-2.5.0-py3-none-any.whl.metadata (174 kB)
+2025-10-09T20:43:19.113404623Z Collecting python-multipart==0.0.6 (from -r requirements.txt (line 4))
+2025-10-09T20:43:19.117588992Z   Downloading python_multipart-0.0.6-py3-none-any.whl.metadata (2.5 kB)
+2025-10-09T20:43:19.788449117Z Collecting python-dotenv==1.0.0 (from -r requirements.txt (line 5))
+2025-10-09T20:43:19.794833737Z   Downloading python_dotenv-1.0.0-py3-none-any.whl.metadata (21 kB)
+2025-10-09T20:43:20.255062794Z Collecting anyio<4.0.0,>=3.7.1 (from fastapi==0.104.1->-r requirements.txt (line 1))
+2025-10-09T20:43:20.260574014Z   Downloading anyio-3.7.1-py3-none-any.whl.metadata (4.7 kB)
+2025-10-09T20:43:20.431229052Z Collecting starlette<0.28.0,>=0.27.0 (from fastapi==0.104.1->-r requirements.txt (line 1))
+2025-10-09T20:43:20.434734534Z   Downloading starlette-0.27.0-py3-none-any.whl.metadata (5.8 kB)
+2025-10-09T20:43:20.576036761Z Collecting typing-extensions>=4.8.0 (from fastapi==0.104.1->-r requirements.txt (line 1))
+2025-10-09T20:43:20.579865821Z   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+2025-10-09T20:43:20.751426691Z Collecting annotated-types>=0.4.0 (from pydantic==2.5.0->-r requirements.txt (line 3))
+2025-10-09T20:43:20.75521674Z   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+2025-10-09T20:43:21.569311998Z Collecting pydantic-core==2.14.1 (from pydantic==2.5.0->-r requirements.txt (line 3))
+2025-10-09T20:43:21.57405814Z   Downloading pydantic_core-2.14.1.tar.gz (359 kB)
+2025-10-09T20:43:21.830545459Z   Installing build dependencies: started
+2025-10-09T20:43:23.574829028Z   Installing build dependencies: finished with status 'done'
+2025-10-09T20:43:23.575553935Z   Getting requirements to build wheel: started
+2025-10-09T20:43:23.624487537Z   Getting requirements to build wheel: finished with status 'done'
+2025-10-09T20:43:23.625599863Z   Preparing metadata (pyproject.toml): started
+2025-10-09T20:43:25.902746369Z   Preparing metadata (pyproject.toml): finished with status 'error'
+2025-10-09T20:43:25.907197454Z   error: subprocess-exited-with-error
+2025-10-09T20:43:25.907207714Z   
+2025-10-09T20:43:25.907211904Z   × Preparing metadata (pyproject.toml) did not run successfully.
+2025-10-09T20:43:25.907216284Z   │ exit code: 1
+2025-10-09T20:43:25.907220244Z   ╰─> [14 lines of output]
+2025-10-09T20:43:25.907223644Z           Updating crates.io index
+2025-10-09T20:43:25.907227614Z       warning: failed to write cache, path: /usr/local/cargo/registry/index/index.crates.io-1949cf8c6b5b557f/.cache/ah/as/ahash, error: Read-only file system (os error 30)
+2025-10-09T20:43:25.907231594Z        Downloading crates ...
+2025-10-09T20:43:25.907235005Z         Downloaded percent-encoding v2.3.0
+2025-10-09T20:43:25.907238815Z       error: failed to create directory `/usr/local/cargo/registry/cache/index.crates.io-1949cf8c6b5b557f`
+2025-10-09T20:43:25.907242405Z       
+2025-10-09T20:43:25.907244615Z       Caused by:
+2025-10-09T20:43:25.907246945Z         Read-only file system (os error 30)
+2025-10-09T20:43:25.907249045Z       💥 maturin failed
+2025-10-09T20:43:25.907251775Z         Caused by: Cargo metadata failed. Does your crate compile with `cargo build`?
+2025-10-09T20:43:25.907254435Z         Caused by: `cargo metadata` exited with an error:
+2025-10-09T20:43:25.907257035Z       Error running maturin: Command '['maturin', 'pep517', 'write-dist-info', '--metadata-directory', '/tmp/pip-modern-metadata-upm0nrmt', '--interpreter', '/opt/render/project/src/.venv/bin/python3.13']' returned non-zero exit status 1.
+2025-10-09T20:43:25.907259105Z       Checking for Rust toolchain....
+2025-10-09T20:43:25.907261735Z       Running `maturin pep517 write-dist-info --metadata-directory /tmp/pip-modern-metadata-upm0nrmt --interpreter /opt/render/project/src/.venv/bin/python3.13`
+2025-10-09T20:43:25.907263835Z       [end of output]
+2025-10-09T20:43:25.907265945Z   
+2025-10-09T20:43:25.907270935Z   note: This error originates from a subprocess, and is likely not a problem with pip.
+2025-10-09T20:43:26.06972395Z 
+2025-10-09T20:43:26.069747231Z [notice] A new release of pip is available: 25.1.1 -> 25.2
+2025-10-09T20:43:26.069752101Z [notice] To update, run: pip install --upgrade pip
+2025-10-09T20:43:26.071142584Z error: metadata-generation-failed
+2025-10-09T20:43:26.071153874Z 
+2025-10-09T20:43:26.071157384Z × Encountered error while generating package metadata.
+2025-10-09T20:43:26.071160234Z ╰─> See above for output.
+2025-10-09T20:43:26.071162214Z 
+2025-10-09T20:43:26.071165044Z note: This is an issue with the package mentioned above, not pip.
+2025-10-09T20:43:26.071167334Z hint: See above for details.
+2025-10-09T20:43:26.247507996Z ==> Build failed 😞
+2025-10-09T20:43:26.247555958Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
