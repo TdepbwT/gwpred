@@ -1,17 +1,18 @@
 # Premier League Prediction System
 
-A comprehensive football prediction system featuring dynamic team ratings, multiple gameweek support, and a modern web interface. Built with FastAPI (backend) and React (frontend), deployed on Railway and Vercel.
+A comprehensive football prediction system featuring dynamic team ratings, multiple gameweek support, and a modern web interface. Built with FastAPI (backend) and React (frontend), deployed on Render and Netlify.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://gwpred.vercel.app)
-[![API](https://img.shields.io/badge/API-Railway-0B0D0E?style=for-the-badge&logo=railway)](https://gwpredictor.up.railway.app)
+[![Static Badge](https://img.shields.io/badge/Live%20Demo-Netlify-0B0D0E?style=for-the-badge&logo=netlify)](https://gwpred.netlify.app/)
+
+[![Static Badge](https://img.shields.io/badge/API-Render-0B0D0E?style=for-the-badge&logo=render)](https://gwpred-backend.onrender.com/)
 
 ## Quick Start
 
 ### Web Application (Live)
 The application is deployed and ready to use:
-- **Frontend**: [https://gwpred.vercel.app](https://gwpred.vercel.app)
-- **API**: [https://gwpredictor.up.railway.app](https://gwpredictor.up.railway.app)
-- **API Documentation**: [https://gwpredictor.up.railway.app/docs](https://gwpredictor.up.railway.app/docs)
+- **Frontend**: [https://gwpred.netlify.app](https://gwpred.netlify.app)
+- **API**: [https://gwpred-backend.onrender.com/](https://gwpred-backend.onrender.com/)
+- **API Documentation**: [https://gwpred-backend.onrender.com/docs](https://gwpred-backend.onrender.com/docs)
 
 ### Local Development
 ```bash
@@ -51,7 +52,7 @@ cd gwpred
 - **Type Safety**: Full TypeScript frontend, Pydantic backend validation
 - **Auto Documentation**: Interactive API docs with OpenAPI/Swagger
 - **Hot Reload**: Development servers with instant updates
-- **Easy Deployment**: Ready for Vercel (frontend) and Railway (backend)
+- **Easy Deployment**: Ready for deployment systems
 
 ##  Architecture
 
@@ -60,15 +61,14 @@ gw1pred/
 ├──   backend/                 # FastAPI REST API
 │   ├── main.py                # Core prediction engine & API endpoints
 │   ├── requirements.txt       # Python dependencies
-│   ├── Procfile              # Railway deployment config
-│   └── railway.toml          # Railway build settings
+│   ├── Procfile              # backend API deployment config
+│   └── render.yaml         # Render build settings
 ├──   frontend/               # React web application
 │   ├── src/
 │   │   ├── App.tsx           # Main application component
 │   │   └── components/       # Reusable UI components
 │   ├── package.json          # Node.js dependencies
 │   ├── tailwind.config.js    # Styling configuration
-│   └── vercel.json           # Vercel deployment config
 ├──   Scripts & Tools
 │   ├── add_gameweek.py       # Helper script for adding new gameweeks
 │   ├── update_ratings.py     # Helper script for updating team ratings
@@ -156,19 +156,19 @@ python update_ratings.py gw3_results.json
 
 ### Production Deployment
 The application is deployed using:
-- **Frontend**: Vercel (automatic deployments from GitHub)
-- **Backend**: Railway (containerized Python API)
+- **Frontend**: Netlify (automatic deployments from GitHub)
+- **Backend**: Render (containerized Python API)
 
 ### Environment Variables
-**Backend (Railway)**:
+**Backend (Render)**:
 ```bash
 PORT=8000
-CORS_ORIGINS=https://gwpred.vercel.app
+CORS_ORIGINS=https://gwpred.netlify.app
 ```
 
-**Frontend (Vercel)**:
+**Frontend (Netlify)**:
 ```bash
-VITE_API_URL=https://gwpredictor.up.railway.app
+VITE_API_URL=https://gwpred-backend.onrender.com/
 ```
 
 ### Manual Deployment
@@ -305,14 +305,14 @@ This application is for educational and entertainment purposes only. The predict
 - **React** - Frontend library
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - Beautiful UI components
-- **Vercel** - Frontend hosting platform
-- **Railway** - Backend hosting platform
+- **Netlify** - Frontend hosting platform
+- **Render** - Backend hosting platform
 
 ---
 
 <div align="center">
 
-**[Live Demo](https://gwpred.vercel.app) | [API Docs](https://gwpredictor.up.railway.app/docs) | [Report Bug](https://github.com/TdepbwT/gwpred/issues) | [Request Feature](https://github.com/TdepbwT/gwpred/issues)**
+**[Live Demo](https://gwpred.netlify.app) | [API Docs](https://gwpred-backend.onrender.com/docs) | [Report Bug](https://github.com/TdepbwT/gwpred/issues) | [Request Feature](https://github.com/TdepbwT/gwpred/issues)**
 
 Made by [David Adeoyo](https://github.com/TdepbwT)
 

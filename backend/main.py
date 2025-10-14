@@ -59,7 +59,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Pydantic models for API responses
 class MatchPrediction(BaseModel):
     match: str
     home_team: str
