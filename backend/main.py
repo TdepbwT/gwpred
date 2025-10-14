@@ -7,9 +7,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Optional
-import json
 from datetime import datetime
-from pathlib import Path
 import os
 import math
 import uvicorn
@@ -27,7 +25,7 @@ allowed_origins = [
     "https://gwpred.netlify.app",
 ]
 
-# Optional: keep any other dev/test origins you need
+# dev/test origins
 allowed_origins += [
     "https://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
     "http://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
