@@ -18,20 +18,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for React frontend
+# for react
 allowed_origins = [
     "http://localhost:5000",
     "http://127.0.0.1:5000",
     "https://gwpred.netlify.app",
 ]
 
-# dev/test origins
+
 allowed_origins += [
     "https://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
     "http://b681cf65-1b53-413d-b493-f8c69bbb40f4-00-118ov6il7cfti.picard.replit.dev",
 ]
 
-# Add environment variable support for production (comma-separated list)
+
 cors_origins = os.getenv("CORS_ORIGINS", "")
 if cors_origins:
     for origin in cors_origins.split(","):
