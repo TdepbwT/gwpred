@@ -1,10 +1,10 @@
-Bournemouth vs Fulham
-Leeds vs Tottenham
-Arsenal vs West Ham United
-Manchester United vs Sunderland
-Chelsea vs Liverpool
-Aston Villa vs Burnley
-Everton vs Crystal Palace
-Newcastle vs Nottingham Forest
-Wolverhampton Wanderers vs Brighton and Hove Albion
-Brentford vs Manchester City
+Nottingham Forest vs Chelsea
+Brighton vs Newcastle
+Burnley vs Leeds
+Crystal Palace vs Bournemouth
+Manchester City vs Everton
+Sunderland vs Wolverhampton Wanderers
+Fulham vs Arsenal
+Tottenham Hotspur vs Aston Villa
+Liverpool vs Manchester United
+West Ham United vs Brentford

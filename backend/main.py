@@ -98,26 +98,26 @@ class TeamRatingsResponse(BaseModel):
 # Current team ratings (post-GW4 results)
 # Updated based on GW2 & GW3 results and major summer 2025 transfers
 CURRENT_RATINGS = {
-    "Manchester City": 1.26,      # +0.05 (3-0 win vs Man Utd, strong performance)
+    "Manchester City": 1.27,      # +0.05 (3-0 win vs Man Utd, strong performance)
     "Arsenal": 1.40,              # +0.05 (3-0 win vs Nottingham Forest, good form continues)
-    "Liverpool": 1.43,            # +0.03 (1-0 win vs Burnley, maintaining form)
-    "Tottenham Hotspur": 0.77,    # +0.05 (3-0 win vs West Ham, good performance)
-    "Aston Villa": 0.25,          # -0.02 (0-0 draw vs Everton, still struggling)
-    "Chelsea": 0.79,              # -0.02 (2-2 draw vs Brentford, dropped points)
-    "Newcastle United": 0.41,     # +0.03 (1-0 win vs Wolves, solid result)
-    "Manchester United": 0.26,    # -0.08 (0-3 loss vs Man City, poor performance)
-    "Brighton & Hove Albion": 0.16, # -0.05 (1-2 loss vs Bournemouth, disappointing)
+    "Liverpool": 1.38,            # +0.03 (1-0 win vs Burnley, maintaining form)
+    "Tottenham Hotspur": 0.79,    # +0.05 (3-0 win vs West Ham, good performance)
+    "Aston Villa": 0.27,          # -0.02 (0-0 draw vs Everton, still struggling)
+    "Chelsea": 0.85,              # -0.02 (2-2 draw vs Brentford, dropped points)
+    "Newcastle United": 0.43,     # +0.03 (1-0 win vs Wolves, solid result)
+    "Manchester United": 0.29,    # -0.08 (0-3 loss vs Man City, poor performance)
+    "Brighton & Hove Albion": 0.12, # -0.05 (1-2 loss vs Bournemouth, disappointing)
     "West Ham United": -0.37,     # -0.10 (0-3 loss vs Spurs, heavy defeat)
-    "Brentford": -0.04,           # +0.02 (2-2 draw vs Chelsea, good point)
-    "Everton": 0.12,              # +0.02 (0-0 draw vs Villa, decent point)
-    "Wolverhampton Wanderers": -0.31, # -0.05 (0-1 loss vs Newcastle, another loss)
-    "Nottingham Forest": -0.08,   # -0.05 (0-3 loss vs Arsenal, heavy defeat)
-    "Crystal Palace": 0.15,       # +0.03 (0-0 draw vs Sunderland, solid point)
-    "Fulham": 0.12,               # +0.03 (1-0 win vs Leeds, good result)
-    "Leeds United": -0.11,        # -0.05 (0-1 loss vs Fulham, another loss)
-    "Bournemouth": -0.08,         # +0.05 (2-1 win vs Brighton, excellent result)
-    "Burnley": -0.45,             # -0.05 (0-1 loss vs Liverpool, another loss)
-    "Sunderland": 0.30,           # -0.02 (0-0 draw vs Palace, missed opportunity)
+    "Brentford": -0.05,           # +0.02 (2-2 draw vs Chelsea, good point)
+    "Everton": 0.16,              # +0.02 (0-0 draw vs Villa, decent point)
+    "Wolverhampton Wanderers": -0.33, # -0.05 (0-1 loss vs Newcastle, another loss)
+    "Nottingham Forest": -0.09,   # -0.05 (0-3 loss vs Arsenal, heavy defeat)
+    "Crystal Palace": 0.12,       # +0.03 (0-0 draw vs Sunderland, solid point)
+    "Fulham": 0.09,               # +0.03 (1-0 win vs Leeds, good result)
+    "Leeds United": -0.12,        # -0.05 (0-1 loss vs Fulham, another loss)
+    "Bournemouth": -0.04,         # +0.05 (2-1 win vs Brighton, excellent result)
+    "Burnley": -0.46,             # -0.05 (0-1 loss vs Liverpool, another loss)
+    "Sunderland": 0.28,           # -0.02 (0-0 draw vs Palace, missed opportunity)
 }
 
 # Team form tracking for last 5 games (updated with GW7 results)
@@ -420,11 +420,23 @@ GAMEWEEK_FIXTURES = {
         ("Wolverhampton Wanderers", "Brighton & Hove Albion"),
         ("Brentford", "Manchester City"),
     ],
+    8: [
+        ("Nottingham Forest", "Chelsea"),
+        ("Brighton & Hove Albion", "Newcastle"),
+        ("Burnley", "Leeds United"),
+        ("Crystal Palace", "Bournemouth"),
+        ("Manchester City", "Everton"),
+        ("Sunderland", "Wolverhampton Wanderers"),
+        ("Fulham", "Arsenal"),
+        ("Tottenham Hotspur", "Aston Villa"),
+        ("Liverpool", "Manchester United"),
+        ("West Ham United", "Brentford"),
+    ],
     # Add future gameweeks here
 }
 
-# Current gameweek (update to 5 for next predictions)
-CURRENT_GAMEWEEK = 7
+# Current gameweek (update to 9 for next predictions)
+CURRENT_GAMEWEEK = 8
 SEASON = "2025-26"
 
 # Model parameters

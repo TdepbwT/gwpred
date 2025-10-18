@@ -85,12 +85,14 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'predictions' | 'ratings' | 'team'>('predictions')
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
+  const [availableGameweeks, setAvailableGameweeks] = useState<number[]>([])
+  const [selectedGameweek, setSelectedGameweek] = useState<number  | null>(null)
 
   useEffect(() => {
     fetchData()
   }, [])
 
-  const fetchData = async () => {
+  const fetchData = async (gameweek?: number) => {
     try {
       setLoading(true)
       setError(null)
@@ -100,9 +102,17 @@ function App() {
       // First get available gameweeks
       const availableRes = await axios.get(`${API_BASE_URL}/predictions`)
       const currentGameweek = availableRes.data.current_gameweek
-      
+      const available = availableRes.data.available_gameweeks || []
+
+      setAvailableGameweeks(available)
+
+      const gwToFetch = selectedGameweek || currentGameweek
+      setSelectedGameweek(gwToFetch)
+
+
+
       const [predictionsRes, ratingsRes] = await Promise.all([
-        axios.get(`${API_BASE_URL}/predictions/${currentGameweek}`),
+        axios.get(`${API_BASE_URL}/predictions/${gwToFetch}`),
         axios.get(`${API_BASE_URL}/ratings`)
       ])
       
@@ -161,6 +171,10 @@ function App() {
     }
   }
 
+  const handleGameweekChange = (gameweek: number) => {
+      fetchData(gameweek)
+  }
+
   const getOutcomeColor = (percentage: number, isHighest: boolean) => {
     if (isHighest && percentage > 60) return 'text-green-600 font-bold'
     if (isHighest && percentage > 40) return 'text-blue-600 font-semibold'
@@ -210,7 +224,7 @@ function App() {
             <CardDescription>{error}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={fetchData} className="w-full">
+            <Button onClick={() =>fetchData()} className="w-full">
               Try Again
             </Button>
           </CardContent>
@@ -231,12 +245,26 @@ function App() {
                 Premier League Predictions
               </h1>
             </div>
+              <div className="flex items-center space-x-4">
+                  <select
+                    value={selectedGameweek || ''}
+                    onChange={(e) => handleGameweekChange(Number(e.target.value))}
+                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    {availableGameweeks.map((gw) => (
+                      <option key={gw} value={gw}>
+                        Gameweek {gw}
+                      </option>
+                    ))}
+                  </select>
+
             <div className="text-sm text-gray-500">
               Season {predictions?.season} • GW{predictions?.gameweek}
             </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
       {/* Navigation */}
       <nav className="bg-white border-b">
